@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Thammapirom.Models.WelcomeImage>
+
+@{
+    ViewBag.Title = "Admin: Edit Index Page ";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="item">
+    <table class="Grid">
+<tr>
+<th>Image</th>
+<th>Actions</th>
+</tr>
+        
+    @foreach (var x in Model)
+    {
+        <tr>
+        @if (x.ImageData != null)
+        {
+           
+        //<div style="float: left; margin-right: 20px">
+            <td><img width="200" height="102" src="@Url.Action("GetWelcomeImage", "Home", new { x.ImageID })" /></td>
+        //</div>
+             <td>@using (Html.BeginForm("DeleteWelcomeImage","Admin")) { 
+                     @Html.Hidden("ImageID", x.ImageID)
+                <input type="submit" value="Delete"/> 
+                
+}
+                 </td>
+        }
+    </tr>
+            }
+        
+        </table>
+    <p>
+    @Html.ActionLink("Add New Image", "AddWelcomeImage")
+    </p>
+</div>

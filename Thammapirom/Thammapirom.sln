@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thammapirom", "Thammapirom\Thammapirom.csproj", "{8B1C6AA4-3DD1-43CE-976F-75ABB16DC3C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thammapirom.Tests", "Thammapirom.Tests\Thammapirom.Tests.csproj", "{235E5A7F-422B-4702-AF32-8B68305FE688}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B1C6AA4-3DD1-43CE-976F-75ABB16DC3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B1C6AA4-3DD1-43CE-976F-75ABB16DC3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B1C6AA4-3DD1-43CE-976F-75ABB16DC3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B1C6AA4-3DD1-43CE-976F-75ABB16DC3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{235E5A7F-422B-4702-AF32-8B68305FE688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{235E5A7F-422B-4702-AF32-8B68305FE688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{235E5A7F-422B-4702-AF32-8B68305FE688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{235E5A7F-422B-4702-AF32-8B68305FE688}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Thammapirom.Models.GalleryImage>
+
+<script>
+    $(document).ready(function () {
+        $('#ulSlider').bxSlider(function () {
+            autoStart: true
+        });
+        $('.bx-wrapper').width('50%');
+    });
+</script>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<p>Gallery</p>
+<p>
+    @Html.ActionLink("Add New Image", "AddGalleryImage")
+</p>
+<div>
+    <ul id="ulSlider">
+        @foreach(var image in Model)
+        {
+            <li>
+               <img src="@Url.Action("GetGalleryImage", "Home", new { image.ImageID })" />
+            </li>
+        }
+    </ul>
+    <table class="Grid">
+<tr>
+<th>Image</th>
+<th>Actions</th>
+</tr>
+        
+    @foreach (var x in Model)
+    {
+        <tr>
+       
+           
+      
+            <td><img width="200" height="102" src="@Url.Action("GetGalleryImage", "Home", new { x.ImageID })" /></td>
+       
+             <td>@using (Html.BeginForm("DeleteGalleryImage","Admin")) { 
+                     @Html.Hidden("ImageID", x.ImageID)
+                <input type="submit" value="Delete"/> 
+                
+}
+                 </td>
+        
+    </tr>
+            }
+        
+        </table>
+</div>
