@@ -15,12 +15,16 @@ namespace Thammapirom.Controllers
     {
         private IWelcomeImageRepository repository;
         private IGalleryImageRepository repository2;
-        public AdminController(IWelcomeImageRepository repo, IGalleryImageRepository repo2)
+        private IBackgroundRepository repository3;
+        private IActivityClipRepository repository4;
+        public AdminController(IWelcomeImageRepository repo, IGalleryImageRepository repo2, IBackgroundRepository repo3, IActivityClipRepository repo4)
         {
             repository = repo;
             repository2 = repo2;
+            repository3 = repo3;
+            repository4 = repo4;
         }
-       
+
         public ViewResult IndexManaging()
         {
             return View(repository.WelcomeImages);
@@ -34,6 +38,7 @@ namespace Thammapirom.Controllers
         {
             return View("AddGalleryImage", new GalleryImage());
         }
+       
         [HttpPost]
         public ActionResult DeleteWelcomeImage(int ImageID)
         {
@@ -62,6 +67,26 @@ namespace Thammapirom.Controllers
         public ViewResult Index()
         {
             return View(repository2.GalleryImages);
+        }
+        public ViewResult EditBackgroundInfo(int backgroundId)
+        {
+            Background background = repository3.Backgrounds.FirstOrDefault(p => p.BackgroundID == backgroundId);
+            return View(background);
+        }
+        public ViewResult BackgroundManaging()
+        {
+            return View(repository3.Backgrounds);
+        }
+        public ViewResult EditActivityClip()
+        {
+            
+                return View("EditActivityClip",new ActivityClip());
+            }
+            
+        
+        public ViewResult ActivityClipManaging()
+        {
+            return View(repository4.ActivityClips);
         }
         /*[HttpPost]
         public ActionResult DeleteImage(int ImageID)
@@ -106,14 +131,19 @@ namespace Thammapirom.Controllers
             GalleryImage deletedGalleryImage = repository2.DeleteGalleryImage(ImageID);
             if (deletedGalleryImage != null)
             {
-
-
                 TempData["message"] = "Delete success";
             }
-
-
-
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult DeleteActivityClip(int clipID)
+        {
+            ActivityClip deletedActivityClip = repository4.DeleteActivityClip(clipID);
+            if (deletedActivityClip != null)
+            {
+                TempData["message"] = "Delete success";
+            }
+            return RedirectToAction("ActivityClipManaging");
         }
         /*
         [HttpGet]
@@ -187,6 +217,36 @@ namespace Thammapirom.Controllers
             {
                 // there is something wrong with the data values
                 return View(galleryImage);
+            }
+        }
+        [HttpPost]
+        public ActionResult EditBackground(Background background)
+        {
+            if (ModelState.IsValid)
+            {
+                repository3.SaveBackgroundInfo(background);
+                //TempData["message"] = string.Format("{0} has been saved", background.Name);
+                return RedirectToAction("BackgroundManaging");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(background);
+            }
+        }
+        [HttpPost]
+        public ActionResult EditActivityClip(ActivityClip activityClip)
+        {
+            if (ModelState.IsValid)
+            {
+                repository4.SaveActivityClip(activityClip);
+                //TempData["message"] = string.Format("{0} has been saved", background.Name);
+                return RedirectToAction("ActivityClipManaging");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(activityClip);
             }
         }
     }

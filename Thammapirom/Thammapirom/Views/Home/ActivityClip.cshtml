@@ -1,5 +1,27 @@
-﻿@{
+﻿
+@model IEnumerable<Thammapirom.Models.ActivityClip>
+@{
     ViewBag.Title = "วิดีโอกิจกรรม";
 }
 
-<h2>@ViewBag.Message</h2>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper" style="background-color: #a37045">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p class="background">
+                @if (Request.IsAuthenticated){
+              foreach(var clip in Model){
+               @clip.ClipTitle<br>
+               <iframe width="640" height="360" src="@clip.ClipEmbedCode" frameborder="0" allowfullscreen></iframe>
+               <br>
+              }
+                }else{
+                <p class="background">สำหรับสมาชิกเท่านั้น</p>
+                }
+            </p>
+        </div>
+    </section>
+}
+    

@@ -1,49 +1,64 @@
 ﻿@{
-    ViewBag.Title = "ติดต่อวัด";
+    ViewBag.Title = "ติดต่อวัดป่าธรรมาภิรมย์";
 }
 
-<hgroup class="title">
-    <h2>@ViewBag.Message</h2>
-</hgroup>
-
+@section featured {
+     <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>        
+        </div>
+    </section>
+      }
+<article>
+   
 <section class="contact">
     <header>
-        <h3>Phone</h3>
+        <h3>โทรศัพท์</h3>
     </header>
     <p>
-        <span class="label">Main:</span>
-        <span>425.555.0100</span>
+        โทรศัพท์:  0-53-57-8514
     </p>
     <p>
-        <span class="label">After Hours:</span>
-        <span>425.555.0199</span>
+        โทรสาร:  0-53-57-8514
     </p>
 </section>
 
 <section class="contact">
     <header>
-        <h3>Email</h3>
+        <h3>ติดต่อเพิ่มเติม</h3>
     </header>
     <p>
-        <span class="label">Support:</span>
-        <span><a href="mailto:Support@example.com">Support@example.com</a></span>
+        พระครูสังฆกิจจารักษ์:  08-1784-8323
     </p>
     <p>
-        <span class="label">Marketing:</span>
-        <span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>
+        คุณณัฐพชร์ เมธีภัคดิภูมิ (คุณนก):  08-1884-2392
     </p>
-    <p>
-        <span class="label">General:</span>
-        <span><a href="mailto:General@example.com">General@example.com</a></span>
-    </p>
+    
 </section>
 
 <section class="contact">
     <header>
-        <h3>Address</h3>
+        <h3>ที่อยู่</h3>
     </header>
     <p>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399
+        เลขที่ ๙๒ หมู่ ๑๑ ปากทางม่วงโตน ตำบลเหล่ายาว
+<br />
+       อำเภอบ้านโฮ่ง จังหวัดลำพูน ๕๑๑๓๐
     </p>
 </section>
+    </article>
+<aside>
+    <h3>แบบฟอร์มติดต่อวัด</h3>
+    <p>
+       
+    </p>
+    <ul>
+        <li>ชื่อผู้ติดต่อ:*</li>
+        <li>อีเมล์:*</li>
+        <li>ชื่อเรื่องติดต่อ:</li>
+         <li>ข้อความ:</li>
+    </ul>
+</aside>
+  

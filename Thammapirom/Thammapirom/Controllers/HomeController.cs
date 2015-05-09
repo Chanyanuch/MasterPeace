@@ -12,10 +12,14 @@ namespace Thammapirom.Controllers
     {
         private IWelcomeImageRepository repository;
         private IGalleryImageRepository repository2;
-        public HomeController(IWelcomeImageRepository welcomeImageRepository, IGalleryImageRepository galleryImageRepository)
+        private IBackgroundRepository repository3;
+        private IActivityClipRepository repository4;
+        public HomeController(IWelcomeImageRepository welcomeImageRepository, IGalleryImageRepository galleryImageRepository, IBackgroundRepository backgroundRepository, IActivityClipRepository activityClipRepository)
         {
             this.repository = welcomeImageRepository;
             this.repository2 = galleryImageRepository;
+            this.repository3 = backgroundRepository;
+            this.repository4 = activityClipRepository;
         }
         public FileContentResult GetWelcomeImage(int imageId)
         {
@@ -52,7 +56,7 @@ namespace Thammapirom.Controllers
         {
             ViewBag.Message = "ประวัติวัด";
 
-            return View();
+            return View(repository3.Backgrounds);
         }
 
         public ActionResult NewsActivities()
@@ -87,7 +91,7 @@ namespace Thammapirom.Controllers
         {
             ViewBag.Message = "วิดีโอกิจกรรม";
 
-            return View();
+            return View(repository4.ActivityClips);
         }
 
         public ActionResult InternetTV()

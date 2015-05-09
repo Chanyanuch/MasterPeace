@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Thammapirom.Models.ActivityClip>
+@{
+    ViewBag.Title = "ActivityClipManaging";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Activity Clip Managing Page</h2>
+
+<div class="item">
+    <table class="Grid">
+<tr>
+<th>Clip ID</th>
+<th>Clip Title</th>
+<th>Clip Content</th>
+<th>Actions</th>
+</tr>
+        
+    @foreach (var clip in Model)
+    {
+        <tr>
+        @if (clip.ClipEmbedCode != null)
+        {
+           <td>@clip.ClipID</td>
+            <td>@clip.ClipTitle</td>
+            <td><iframe width="160" height="120" src="@clip.ClipEmbedCode" frameborder="0" allowfullscreen></iframe></td>
+       
+             <td>@using (Html.BeginForm("DeleteActivityClip","Admin")) { 
+                     @Html.Hidden("ClipID", clip.ClipID)
+                <input type="submit" value="Delete"/> 
+                
+}
+                 </td>
+        }
+    </tr>
+            }
+        
+        </table>
+    <p>
+    @Html.ActionLink("Add New Activity Clip", "EditActivityClip")
+    </p>
+</div>

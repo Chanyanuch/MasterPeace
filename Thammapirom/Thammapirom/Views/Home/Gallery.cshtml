@@ -1,5 +1,55 @@
-﻿@{
-    ViewBag.Title = "แกลอรี่";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
 
-<h2>@ViewBag.Message</h2>
+
+
+
+
+</head>
+<body>
+    @model IEnumerable<Thammapirom.Models.GalleryImage>
+    @{
+        ViewBag.Title = "แกลอรี่";
+    }
+
+    @section featured {
+        <div class="imgdiv"></div>
+
+        <div id="ladiv" style="height: 252px; width: 334px;">
+           
+                @foreach (var item in Model)
+                {
+                    if (item.ImageData != null)
+                    {
+<img onmouseover="Big(this)" onmouseout="Small(this)" width="400" height="204" src="@Url.Action("GetGalleryImage", "Home", new { item.ImageID })"  />
+<script>
+    /* $(function () {
+         $("img.imgthumbnail").click(function (e) {
+             var largeImg = '<img src=' + $(this).attr("src") + '></img>';
+             $('#ladiv')
+                .html($(largeImg)
+                .animate({ height: '204', width: '400' }, 1600));
+         });
+     });
+     */
+    function Big(me) {
+        me.style.height = "408px";
+        me.style.width = "800px";
+    }
+    function Small(me) {
+        me.style.height = "204px";
+        me.style.width = "400px";
+    }
+
+    </script>    
+                    }
+                }
+            
+
+        </div>
+
+    }
+</body>
+</html>

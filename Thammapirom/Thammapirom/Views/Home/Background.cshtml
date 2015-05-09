@@ -1,7 +1,25 @@
-﻿@{
+﻿@model IEnumerable<Thammapirom.Models.Background>
+@{
     ViewBag.Title = "ประวัติวัด";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p class="background">
+                @foreach (var background in Model)
+                { 
+    
+    
+                    @background.BackgroundInfo
+ 
+           
+                }
+
+            </p>
+        </div>
+    </section>
+}

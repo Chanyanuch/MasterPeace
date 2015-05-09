@@ -10,6 +10,7 @@ namespace Thammapirom.Models
     public class Background
     {
         [Key]
+        [HiddenInput(DisplayValue = false)]
         public int BackgroundID { get; set; }
         public string BackgroundInfo { get; set; }      
     }

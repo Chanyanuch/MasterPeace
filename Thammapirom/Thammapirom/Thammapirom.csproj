@@ -162,6 +162,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IActivityClipRepository.cs" />
     <Compile Include="Abstract\IBackgroundRepository.cs" />
     <Compile Include="Abstract\IGalleryImageRepository.cs" />
     <Compile Include="Abstract\IWelcomeImageRepository.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Concrete\EFActivityClipRepository.cs" />
     <Compile Include="Concrete\EFBackgroundRepository.cs" />
     <Compile Include="Concrete\EFGalleryImageRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
@@ -183,6 +185,7 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ActivityClip.cs" />
     <Compile Include="Models\Background.cs" />
     <Compile Include="Models\GalleryImage.cs" />
     <Compile Include="Models\WelcomeImage.cs" />
@@ -258,6 +261,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\StyleSheet.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -346,6 +350,10 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AddGalleryImage.cshtml" />
     <Content Include="Views\Admin\DeleteWelcomeImage.cshtml" />
+    <Content Include="Views\Admin\BackgroundManaging.cshtml" />
+    <Content Include="Views\Admin\EditBackgroundInfo.cshtml" />
+    <Content Include="Views\Admin\ActivityClipManaging.cshtml" />
+    <Content Include="Views\Admin\EditActivityClip.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

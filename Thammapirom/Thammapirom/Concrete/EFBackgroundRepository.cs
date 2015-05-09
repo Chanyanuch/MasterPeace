@@ -13,21 +13,21 @@ namespace Thammapirom.Concrete
         {
             get { return context.Backgrounds; }
         }
-        public void SaveBackgroundInfo(int backgroundID, string backgroundInfo)
+        public void SaveBackgroundInfo(Background background)
         {
-            Background dbEntry = context.Backgrounds.Find(backgroundID);
-            if (backgroundID == 0)
+            
+            if (background.BackgroundID == 0)
             {
-                dbEntry.BackgroundInfo = backgroundInfo;
-                context.Backgrounds.Add(dbEntry);
+                //dbEntry.BackgroundInfo = backgroundInfo;
+                context.Backgrounds.Add(background);
             }
             else
             {
-                
+                Background dbEntry = context.Backgrounds.Find(background.BackgroundID);
                 if (dbEntry != null)
                 {
 
-                    dbEntry.BackgroundInfo = backgroundInfo;
+                    dbEntry.BackgroundInfo = background.BackgroundInfo;
                    
                 }
             }
@@ -38,8 +38,8 @@ namespace Thammapirom.Concrete
             Background dbEntry = context.Backgrounds.Find(backgroundID);
             if (dbEntry != null)
             {
-                dbEntry.BackgroundInfo = null;
-                context.Backgrounds.Add(dbEntry);
+                dbEntry.BackgroundInfo = "";
+               
                 context.SaveChanges();
             }
             return dbEntry;

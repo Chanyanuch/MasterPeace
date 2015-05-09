@@ -50,3 +50,4 @@ C:\Users\Ganis\Documents\Visual Studio 2012\Projects\Thammapirom\Thammapirom\bin
 C:\Users\Ganis\Documents\Visual Studio 2012\Projects\Thammapirom\Thammapirom\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\Users\Ganis\Documents\Visual Studio 2012\Projects\Thammapirom\Thammapirom\obj\Debug\Thammapirom.dll
 C:\Users\Ganis\Documents\Visual Studio 2012\Projects\Thammapirom\Thammapirom\obj\Debug\Thammapirom.pdb
+C:\Users\Ganis\Documents\Visual Studio 2012\Projects\Thammapirom\Thammapirom\obj\Debug\Thammapirom.csprojResolveAssemblyReference.cache

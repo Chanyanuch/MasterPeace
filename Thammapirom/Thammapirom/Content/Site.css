@@ -6,11 +6,10 @@
 
 body {
     background: url("../Images/BGwat-line.png");
-   
     border-top: solid 10px #000;
     color: #d6a639;
     font-size: .85em;
-    font-family: Kunlasatri ;
+    font-family: Kunlasatri;
     margin: 0;
     padding: 0;
 }
@@ -42,10 +41,12 @@ mark {
     padding-left: 5px;
     padding-right: 5px;
 }
+
 .logobar {
     display: inline-block;
     margin-left: 320px;
 }
+
 .menubar {
     display: inline-block;
     margin: 0 auto;
@@ -102,21 +103,20 @@ h5, h6 {
 }
 
 #body {
-    
     clear: both;
     padding-bottom: 35px;
+    background-color: rgba(163,112,69,0.7);
+
 }
 
-    .main-content {
-       
-    }
+.main-content {
+}
 
-    .featured + .main-content {
-        
-    }
+.featured + .main-content {
+}
 
 header .content-wrapper {
-    padding-top: 20px; 
+    padding-top: 20px;
 }
 
 footer {
@@ -136,12 +136,12 @@ footer {
     margin: 0;
 }
 
-.site-title a, .site-title a:hover, .site-title a:active {
-    background: none;
-    color: #c8c8c8;
-    outline: none;
-    text-decoration: none;
-}
+    .site-title a, .site-title a:hover, .site-title a:active {
+        background: none;
+        color: #c8c8c8;
+        outline: none;
+        text-decoration: none;
+    }
 
 
 /* login
@@ -161,12 +161,12 @@ footer {
         text-decoration: none;
     }
 
-    #login a.username {
-        background: none;
-        margin: 0;
-        padding: 0;
-        text-decoration: underline;
-    }
+        #login a.username {
+            background: none;
+            margin: 0;
+            padding: 0;
+            text-decoration: underline;
+        }
 
     #login ul {
         margin: 0;
@@ -191,7 +191,6 @@ ul#menu {
     ul#menu li {
         display: inline;
         list-style: none;
-      
         font-family: Kunlasatri;
         font-weight: bold;
         font-size: 20pt;
@@ -204,57 +203,53 @@ ul#menu {
             text-decoration: none;
         }
 
-        ul#menu li a:hover {
-            color: #fff;
-            text-decoration: none;
-        }
-      
+            ul#menu li a:hover {
+                color: #fff;
+                text-decoration: none;
+            }
+
 
 
 /* page elements
 ----------------------------------------------------------*/
 /* featured */
 .featured {
-    
 }
 
     .featured .content-wrapper {
-        
-        
         color: #3e5667;
         padding: 20px 40px 30px 40px;
     }
 
-        .featured hgroup.title h1, .featured hgroup.title h2 {
-            color: #fff;
-        }
+    .featured hgroup.title h1, .featured hgroup.title h2 {
+        color: #fff;
+    }
 
-        .featured p {
-            font-size: 1.1em;
-        }
+    .featured p {
+        font-size: 1.1em;
+    }
 
 /* page titles */
 hgroup.title {
     margin-bottom: 10px;
 }
 
-hgroup.title h1, hgroup.title h2 {
-    display: inline;
-    color: #d6a639;
-    font-family: Kunlasatri;
+    hgroup.title h1, hgroup.title h2 {
+        display: inline;
+        color: #d6a639;
+        font-family: Kunlasatri;
+    }
 
-    
-}
+    hgroup.title h2 {
+        font-weight: normal;
+        margin-left: 3px;
+    }
 
-hgroup.title h2 {
-    font-weight: normal;
-    margin-left: 3px;
-}
-hgroup.title p {
-    color: #d6a639;
-    font-family: Kunlasatri;
-    font-size: 20px;
-}
+    hgroup.title p {
+        color: #d6a639;
+        font-family: Kunlasatri;
+        font-size: 20px;
+    }
 /* features */
 section.feature {
     width: 300px;
@@ -323,19 +318,32 @@ aside {
     float: right;
     width: 25%;
 }
-
+    aside h3 {
+    font-size: 24px;
+     font-family: Kunlasatri;
+    }
+    aside p {
+     font-size: 24px;
+     font-family: Kunlasatri;
+    }
     aside ul {
         list-style: none;
         padding: 0;
+        font-size: 24px;
+     font-family: Kunlasatri;
     }
 
         aside ul li {
             background: url("../Images/bullet.png") no-repeat 0 50%;
             padding: 2px 0 2px 20px;
+            font-size: 24px;
+     font-family: Kunlasatri;
         }
 
 .label {
     font-weight: 700;
+    font-size:24px;
+    font-family: Kunlasatri;
 }
 
 /* login page */
@@ -365,12 +373,12 @@ aside {
         width: 250px;
     }
 
-    #loginForm input[type="checkbox"],
-    #loginForm input[type="submit"],
-    #loginForm input[type="button"],
-    #loginForm button {
-        width: auto;
-    }
+        #loginForm input[type="checkbox"],
+        #loginForm input[type="submit"],
+        #loginForm input[type="button"],
+        #loginForm button {
+            width: auto;
+        }
 
 #socialLoginForm {
     margin-left: 40px;
@@ -379,7 +387,7 @@ aside {
 }
 
     #socialLoginForm h2 {
-        margin-bottom:  5px;
+        margin-bottom: 5px;
     }
 
 #socialLoginList button {
@@ -392,11 +400,15 @@ aside {
 
 /* contact */
 .contact h3 {
-    font-size: 1.2em;
+    font-size: 24px;
+    font-family: Kunlasatri;
+    text-emphasis-color: green;
 }
 
 .contact p {
     margin: 5px 0 0 10px;
+    font-family: Kunlasatri;
+     font-size: 20px;
 }
 
 .contact iframe {
@@ -433,9 +445,9 @@ label {
     padding-right: 20px;
 }
 
-label.checkbox {
-    display: inline;
-}
+    label.checkbox {
+        display: inline;
+    }
 
 input, textarea {
     border: 1px solid #d6a639;
@@ -457,33 +469,33 @@ textarea {
         background: #291408;
     }
 
-    input[type="checkbox"] {
-        background: transparent;
-        border: inherit;
-        width: auto;
-    }
+input[type="checkbox"] {
+    background: transparent;
+    border: inherit;
+    width: auto;
+}
 
-    input[type="submit"],
-    input[type="button"],
-    button {
-        background-color: #d3dce0;
-        border: 1px solid #787878;
-        cursor: pointer;
-        font-family: Kunlasatri;
-        font-size: 16px;
-        font-weight: 600;
-        padding: 7px;
-        margin-right: 8px;
-        width: auto;
-    }
+input[type="submit"],
+input[type="button"],
+button {
+    background-color: #d3dce0;
+    border: 1px solid #787878;
+    cursor: pointer;
+    font-family: Kunlasatri;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 7px;
+    margin-right: 8px;
+    width: auto;
+}
 
-    td input[type="submit"],
-    td input[type="button"],
-    td button {
-        font-size: 1em;
-        padding: 4px;
-        margin-right: 4px;
-    }
+td input[type="submit"],
+td input[type="button"],
+td button {
+    font-size: 1em;
+    padding: 4px;
+    margin-right: 4px;
+}
 
 /* info and errors */
 .message-info {
@@ -510,7 +522,6 @@ textarea {
 }
 
 .error {
-    
     background-color: #291408;
     color: #7ac0da;
 }
@@ -567,36 +578,36 @@ th {
         position: relative;
     }
 
-    th a:link, th a:visited, th a:active, th a:hover {
-        color: #333;
-        font-weight: 600;
-        text-decoration: none;
-        padding: 0;
-    }
+        th a:link, th a:visited, th a:active, th a:hover {
+            color: #333;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0;
+        }
 
-    th a:hover {
-        color: #000;
-    }
+        th a:hover {
+            color: #000;
+        }
 
     th.asc a, th.desc a {
         margin-right: .75em;
     }
 
-    th.asc a:after, th.desc a:after {
-        display: block;
-        position: absolute;
-        right: 0em;
-        top: 0;
-        font-size: 0.75em;
-    }
+        th.asc a:after, th.desc a:after {
+            display: block;
+            position: absolute;
+            right: 0em;
+            top: 0;
+            font-size: 0.75em;
+        }
 
-    th.asc a:after {
-        content: '▲';
-    }
+        th.asc a:after {
+            content: '▲';
+        }
 
-    th.desc a:after {
-        content: '▼';
-    }
+        th.desc a:after {
+            content: '▼';
+        }
 
 td {
     padding: 0.25em 2em 0.25em 0em;
@@ -653,9 +664,9 @@ tr.pager td {
             padding: 0;
         }
 
-        #login a:hover {
-            color: #333;
-        }
+            #login a:hover {
+                color: #333;
+            }
 
     /* menu */
     nav {
@@ -720,12 +731,12 @@ tr.pager td {
                 background: none;
             }
 
-     /* features */
-     section.feature {
+    /* features */
+    section.feature {
         float: none;
         padding: 10px;
         width: auto;
-     }
+    }
 
         section.feature img {
             color: #999;
@@ -775,21 +786,35 @@ tr.pager td {
             margin: 0;
         }
 }
+
 p#greeting {
-        font-family: Kunlasatri;
-        font-size: 16pt;
-        color: #fff;
+    font-family: Kunlasatri;
+    font-size: 16pt;
+    color: #fff;
 }
+
     p#greeting a {
         font-family: Calibri;
         font-size: 16pt;
         color: #fff;
     }
-    a#logout {
-        font-family: Kunlasatri;
-        font-size: 14pt;
-        color: #000;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-   
+
+a#logout {
+    font-family: Kunlasatri;
+    font-size: 14pt;
+    color: #000;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+p.background {
+    font-family: Kunlasatri;
+    font-size: 16pt;
+    color: #333;
+}
+p.welcome {
+    font-family: Kunlasatri;
+    font-size: 36pt;
+    color: #fff;
+    text-align: center;
+}

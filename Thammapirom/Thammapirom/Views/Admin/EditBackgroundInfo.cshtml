@@ -1,0 +1,13 @@
+﻿@model Thammapirom.Models.Background
+
+@{
+    ViewBag.Title = "EditBackgroundInfo";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>EditBackgroundInfo</h2>
+@using (Html.BeginForm("EditBackground","Admin")) {
+@Html.EditorForModel()
+<input type="submit" value="Save" />
+@Html.ActionLink("Cancel and return Background Managing Page", "BackgroundManaging")
+}

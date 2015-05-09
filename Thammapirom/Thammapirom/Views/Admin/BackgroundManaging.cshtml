@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Thammapirom.Models.Background>
+
+
+@{
+ViewBag.Title = "Admin: Edit Background";
+Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>BackgroundManaging</h2>
+@foreach (var background in Model)
+{ 
+    <table>
+        <tr>
+            <td>
+                @background.BackgroundInfo
+            </td>
+            <td>@Html.ActionLink("Edit","EditBackgroundInfo", new { background.BackgroundID })</td>
+        </tr>
+    </table>
+}
