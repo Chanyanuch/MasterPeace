@@ -15,6 +15,8 @@ namespace Thammapirom.Models
         public int EventID { get; set; }
         [Display(Name = "ชื่อกิจกรรม")]
         public string EventTitle { get; set; }
+        [Display(Name = "รายละเอียดกิจกรรม")]
+        public string EventDetail { get; set; }
         [Display(Name = "วันที่จัดกิจกรรม")]
         public string EventDate { get; set; }
         [Display(Name = "เวลาจัดกิจกรรม")]

@@ -4,11 +4,14 @@
     ViewBag.Title = "EditBackgroundInfo";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>EditBackgroundInfo</h2>
-@using (Html.BeginForm("EditBackground", "Admin"))
+@if (Session["LoginStatus"] == "True")
 {
-    @Html.EditorForModel()
-    <input type="submit" value="Save" />
-    @Html.ActionLink("Cancel and return Background Managing Page", "BackgroundManaging")
+    <h2>EditBackgroundInfo</h2>
+    using (Html.BeginForm("EditBackground", "Admin"))
+    {
+        @Html.EditorForModel()
+        <input type="submit" value="Save" />
+        @Html.ActionLink("Cancel and return Background Managing Page", "BackgroundManaging")
+    }
 }
+else { }

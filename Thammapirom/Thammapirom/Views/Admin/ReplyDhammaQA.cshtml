@@ -28,23 +28,28 @@
         font-family: Segoe UI, Verdana;
     }
 </style>
-<table style="width: 500px;">
+@if (Session["LoginStatus"] == "True")
+{
+    <h2>ตอบคำถามธรรมะ</h2>
+    <table style="width: 500px;">
 
-    @using (Html.BeginForm("ReplyDhammaQuestion", "Admin"))
-    {
-        <tr>
-            <td>@Html.ValueFor(Model => Model.Question)</td>
-        </tr>
-        <tr>
-            <td>
-                @Html.HiddenFor(Model => Model.Question)
-                @Html.EditorFor(Model => Model.Answer)
-                @Html.HiddenFor(Model => Model.QAID)
-                <input type="submit" value="ตอบ" />
+        @using (Html.BeginForm("ReplyDhammaQuestion", "Admin"))
+        {
+            <tr>
+                <td>@Html.ValueFor(Model => Model.Question)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.HiddenFor(Model => Model.Question)
+                    @Html.EditorFor(Model => Model.Answer)
+                    @Html.HiddenFor(Model => Model.QAID)
+                    <input type="submit" value="ตอบ" />
 
-                @Html.ActionLink("ยกเลิกและกลับสู่หน้าจัดการกระทู้ธรรม", "DhammaQAManaging")
-            </td>
-        </tr>
+                    @Html.ActionLink("ยกเลิกและกลับสู่หน้าจัดการกระทู้ธรรม", "DhammaQAManaging")
+                </td>
+            </tr>
     
-    }
-</table>
+        }
+    </table>
+}
+else { }

@@ -7,37 +7,39 @@ using System;
 
 namespace Thammapirom.Concrete
 {
-    public class EFOtherEventRepository : IEventRepository
+    public class EFOtherEventRepository : IOtherEventRepository
     {
         private EFDbContext context = new EFDbContext();
         public IQueryable<OtherEvent> OtherEvents
         {
             get { return context.OtherEvents; }
         }
-        public void SaveEvent(OtherEvent evt)
+        public void SaveOtherEvent(OtherEvent oev)
         {
-            if (evt.EventID == 0)
+            oev = new OtherEvent();
+            if (oev.EventID == 0)
             {
-                context.OtherEvents.Add(evt);
+                context.OtherEvents.Add(oev);
             }
             else
             {
-                OtherEvent dbEntry = context.OtherEvents.Find(evt.EventID);
+                OtherEvent dbEntry = context.OtherEvents.Find(oev.EventID);
                 if (dbEntry != null)
                 {
 
-                    dbEntry.EventTitle = evt.EventTitle;
-                    dbEntry.EventDate = evt.EventDate;
-                    dbEntry.EventTime = evt.EventTime;
-                    dbEntry.EventLocation = evt.EventLocation;
-                    dbEntry.EventPurpose = evt.EventPurpose;
+                    dbEntry.EventTitle = oev.EventTitle;
+                    dbEntry.EventDetail = oev.EventDetail;
+                    dbEntry.EventDate = oev.EventDate;
+                    dbEntry.EventTime = oev.EventTime;
+                    dbEntry.EventLocation = oev.EventLocation;
+                    dbEntry.EventPurpose = oev.EventPurpose;
                 }
             }
             context.SaveChanges();
         }
-        public Event DeleteEvent(int eventID)
+        public OtherEvent DeleteOtherEvent(int oEventID)
         {
-            OtherEvent dbEntry = context.OtherEvents.Find(eventID);
+            OtherEvent dbEntry = context.OtherEvents.Find(oEventID);
             if (dbEntry != null)
             {
 

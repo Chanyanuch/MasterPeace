@@ -56,6 +56,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -163,8 +164,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IActivityClipRepository.cs" />
+    <Compile Include="Abstract\IAnnualEventRepository.cs" />
     <Compile Include="Abstract\IBackgroundRepository.cs" />
+    <Compile Include="Abstract\IContactRepository.cs" />
     <Compile Include="Abstract\IDhammaQARepository.cs" />
+    <Compile Include="Abstract\IOtherEventRepository.cs" />
     <Compile Include="Abstract\IGalleryImageRepository.cs" />
     <Compile Include="Abstract\IWelcomeImageRepository.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -172,9 +176,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Concrete\EFContactRepository.cs" />
+    <Compile Include="Concrete\EFOtherEventRepository.cs" />
     <Compile Include="Concrete\EFActivityClipRepository.cs" />
     <Compile Include="Concrete\EFBackgroundRepository.cs" />
     <Compile Include="Concrete\EFDhammaQARepository.cs" />
+    <Compile Include="Concrete\EFAnnualEventRepository.cs" />
     <Compile Include="Concrete\EFGalleryImageRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFWelcomeImageRepository.cs" />
@@ -188,9 +195,14 @@
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ActivityClip.cs" />
+    <Compile Include="Models\AdminAccount.cs" />
     <Compile Include="Models\Background.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\DhammaQA.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\GalleryImage.cs" />
+    <Compile Include="Models\AnnualEvent.cs" />
+    <Compile Include="Models\OtherEvent.cs" />
     <Compile Include="Models\WelcomeImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -342,7 +354,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Background.cshtml" />
     <Content Include="Views\Home\DhammaContent.cshtml" />
-    <Content Include="Views\Home\NewsActivities.cshtml" />
+    <Content Include="Views\Home\AnnualEvent.cshtml" />
     <Content Include="Views\Home\DhammaQA.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
     <Content Include="Views\Home\ActivityClip.cshtml" />
@@ -360,6 +372,14 @@
     <Content Include="Views\Home\SendDhammaQ.cshtml" />
     <Content Include="Views\Admin\DhammaQAManaging.cshtml" />
     <Content Include="Views\Admin\ReplyDhammaQA.cshtml" />
+    <Content Include="Views\Admin\AnnualEventManaging.cshtml" />
+    <Content Include="Views\Admin\OtherEventManaging.cshtml" />
+    <Content Include="Views\Admin\AddAnnualEvent.cshtml" />
+    <Content Include="Views\Admin\AddOtherEvent.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Home\AnnualEventDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
