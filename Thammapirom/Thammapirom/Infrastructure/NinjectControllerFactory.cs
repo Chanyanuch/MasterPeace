@@ -30,6 +30,7 @@ namespace Thammapirom.Infrastructure
            ninjectKernel.Bind<IGalleryImageRepository>().To<EFGalleryImageRepository>();
            ninjectKernel.Bind<IBackgroundRepository>().To<EFBackgroundRepository>();
            ninjectKernel.Bind<IActivityClipRepository>().To<EFActivityClipRepository>();
+           ninjectKernel.Bind<IDhammaQARepository>().To<EFDhammaQARepository>();
         }
     }
 }

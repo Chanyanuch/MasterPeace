@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Thammapirom.Models.GalleryImage>
+
+@{
+    ViewBag.Title = "หน้าจัดการแกลอรี่";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    table, td, th {
+        border: 1px solid blue;
+    }
+
+    th {
+        background-color: blue;
+        color: white;
+        padding: 10px;
+    }
+
+    td {
+        padding: 10px;
+    }
+</style>
+<h2>หน้าจัดการแกลอรี่</h2>
+<p>
+    @Html.ActionLink("เพิ่มรูปภาพใหม่", "AddGalleryImage")
+</p>
+<div>
+    <table>
+        <tr>
+            <th>รุปภาพ</th>
+            <th>ส่วนจัดการ</th>
+        </tr>
+
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>
+                    <img width="200" height="102" src="@Url.Action("GetGalleryImage", "Home", new { x.ImageID })" /></td>
+                <td>@using (Html.BeginForm("DeleteGalleryImage", "Admin"))
+                    { 
+                    @Html.Hidden("ImageID", x.ImageID)
+                    <input type="submit" value="ลบ" />               
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

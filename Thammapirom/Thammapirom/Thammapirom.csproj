@@ -164,6 +164,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IActivityClipRepository.cs" />
     <Compile Include="Abstract\IBackgroundRepository.cs" />
+    <Compile Include="Abstract\IDhammaQARepository.cs" />
     <Compile Include="Abstract\IGalleryImageRepository.cs" />
     <Compile Include="Abstract\IWelcomeImageRepository.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Concrete\EFActivityClipRepository.cs" />
     <Compile Include="Concrete\EFBackgroundRepository.cs" />
+    <Compile Include="Concrete\EFDhammaQARepository.cs" />
     <Compile Include="Concrete\EFGalleryImageRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFWelcomeImageRepository.cs" />
@@ -187,6 +189,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ActivityClip.cs" />
     <Compile Include="Models\Background.cs" />
+    <Compile Include="Models\DhammaQA.cs" />
     <Compile Include="Models\GalleryImage.cs" />
     <Compile Include="Models\WelcomeImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -347,13 +350,16 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\IndexManaging.cshtml" />
     <Content Include="Views\Admin\AddWelcomeImage.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\GalleryManaging.cshtml" />
     <Content Include="Views\Admin\AddGalleryImage.cshtml" />
     <Content Include="Views\Admin\DeleteWelcomeImage.cshtml" />
     <Content Include="Views\Admin\BackgroundManaging.cshtml" />
     <Content Include="Views\Admin\EditBackgroundInfo.cshtml" />
     <Content Include="Views\Admin\ActivityClipManaging.cshtml" />
-    <Content Include="Views\Admin\EditActivityClip.cshtml" />
+    <Content Include="Views\Admin\AddActivityClip.cshtml" />
+    <Content Include="Views\Home\SendDhammaQ.cshtml" />
+    <Content Include="Views\Admin\DhammaQAManaging.cshtml" />
+    <Content Include="Views\Admin\ReplyDhammaQA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

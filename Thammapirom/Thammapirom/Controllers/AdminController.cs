@@ -17,12 +17,15 @@ namespace Thammapirom.Controllers
         private IGalleryImageRepository repository2;
         private IBackgroundRepository repository3;
         private IActivityClipRepository repository4;
-        public AdminController(IWelcomeImageRepository repo, IGalleryImageRepository repo2, IBackgroundRepository repo3, IActivityClipRepository repo4)
+        private IDhammaQARepository repository5;
+
+        public AdminController(IWelcomeImageRepository repo, IGalleryImageRepository repo2, IBackgroundRepository repo3, IActivityClipRepository repo4, IDhammaQARepository repo5)
         {
             repository = repo;
             repository2 = repo2;
             repository3 = repo3;
             repository4 = repo4;
+            repository5 = repo5;
         }
 
         public ViewResult IndexManaging()
@@ -38,7 +41,7 @@ namespace Thammapirom.Controllers
         {
             return View("AddGalleryImage", new GalleryImage());
         }
-       
+
         [HttpPost]
         public ActionResult DeleteWelcomeImage(int ImageID)
         {
@@ -64,7 +67,7 @@ namespace Thammapirom.Controllers
             }
 
         }*/
-        public ViewResult Index()
+        public ViewResult GalleryManaging()
         {
             return View(repository2.GalleryImages);
         }
@@ -77,16 +80,24 @@ namespace Thammapirom.Controllers
         {
             return View(repository3.Backgrounds);
         }
-        public ViewResult EditActivityClip()
+        public ViewResult AddActivityClip()
         {
-            
-                return View("EditActivityClip",new ActivityClip());
-            }
-            
-        
+
+            return View("AddActivityClip", new ActivityClip());
+        }
+
+        public ViewResult ReplyDhammaQA(int qaID)
+        {
+            DhammaQA dhammaQA = repository5.DhammaQAs.FirstOrDefault(p => p.QAID == qaID);
+            return View(dhammaQA);
+        }
         public ViewResult ActivityClipManaging()
         {
             return View(repository4.ActivityClips);
+        }
+        public ViewResult DhammaQAManaging()
+        {
+            return View(repository5.DhammaQAs);
         }
         /*[HttpPost]
         public ActionResult DeleteImage(int ImageID)
@@ -133,7 +144,7 @@ namespace Thammapirom.Controllers
             {
                 TempData["message"] = "Delete success";
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("GalleryManaging");
         }
         [HttpPost]
         public ActionResult DeleteActivityClip(int clipID)
@@ -144,6 +155,16 @@ namespace Thammapirom.Controllers
                 TempData["message"] = "Delete success";
             }
             return RedirectToAction("ActivityClipManaging");
+        }
+        [HttpPost]
+        public ActionResult DeleteDhammaQA(int QAID)
+        {
+            DhammaQA deletedDhammaQA = repository5.DeleteDhammaQA(QAID);
+            if (deletedDhammaQA != null)
+            {
+                TempData["message"] = "Delete success";
+            }
+            return RedirectToAction("DhammaQAManaging");
         }
         /*
         [HttpGet]
@@ -199,7 +220,7 @@ namespace Thammapirom.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Index(GalleryImage galleryImage, HttpPostedFileBase image)
+        public ActionResult GalleryManaging(GalleryImage galleryImage, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -211,7 +232,7 @@ namespace Thammapirom.Controllers
                 }
                 repository2.SaveGalleryImage(galleryImage);
                 TempData["message"] = string.Format("{0} has been saved", galleryImage.ImageID);
-                return RedirectToAction("Index");
+                return RedirectToAction("GalleryManaging");
             }
             else
             {
@@ -235,7 +256,7 @@ namespace Thammapirom.Controllers
             }
         }
         [HttpPost]
-        public ActionResult EditActivityClip(ActivityClip activityClip)
+        public ActionResult AddActivityClip(ActivityClip activityClip)
         {
             if (ModelState.IsValid)
             {
@@ -247,6 +268,22 @@ namespace Thammapirom.Controllers
             {
                 // there is something wrong with the data values
                 return View(activityClip);
+            }
+        }
+        [HttpPost]
+        public ActionResult ReplyDhammaQuestion(DhammaQA dhammaQA)
+        {
+            if (ModelState.IsValid)
+            {
+
+                repository5.SaveDhammaQA(dhammaQA);
+                //TempData["message"] = string.Format("{0} has been saved", background.Name);
+                return RedirectToAction("DhammaQAManaging");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(dhammaQA);
             }
         }
     }

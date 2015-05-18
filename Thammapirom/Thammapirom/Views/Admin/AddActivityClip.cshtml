@@ -1,0 +1,18 @@
+﻿@model Thammapirom.Models.ActivityClip
+
+
+@{
+    ViewBag.Title = "Add Activity Clip";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>เพิ่มคลิปกิจกรรม</h2>
+<p>ตัวอย่างลิ้ง: http://www.youtube.com/embed/Q1wpgnd9Jyg <p>
+@using (Html.BeginForm("AddActivityClip", "Admin"))
+{
+        @Html.EditorForModel()
+        
+        <input type="submit" value="Save" />
+    
+    @Html.ActionLink("ยกเลิกและกลับสู่หน้าจัดการคลิปกิจกรรม", "ActivityManaging")
+}

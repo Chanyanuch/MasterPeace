@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Thammapirom.Models.DhammaQA>
+@{
+    ViewBag.Title = "DhammaQAManaging";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>หน้าจัดการกระทู้ธรรม</h2>
+<style>
+    table, td, th {
+        border: 1px solid green;
+    }
+
+    th {
+        background-color: green;
+        color: white;
+    }
+
+    td {
+        padding: 10px;
+    }
+</style>
+<div class="item">
+    <table>
+        <tr>
+            <th>ลำดับ</th>
+            <th>คำถาม</th>
+            <th>คำตอบ</th>
+            <th colspan="2">ส่วนจัดการ</th>
+        </tr>
+
+        @foreach (var qa in Model)
+        {
+            <tr>
+                @if (qa.QAID != null)
+                {
+                    <td>@qa.QAID</td>
+                    <td>@qa.Question</td>
+                    <td>@qa.Answer</td>
+                    <td>@Html.ActionLink("ตอบ", "ReplyDhammaQA", new { qa.QAID })
+                    </td>
+       
+                    <td>@using (Html.BeginForm("DeleteDhammaQA", "Admin"))
+                        { 
+                        @Html.Hidden("QAID", qa.QAID)
+                        <input type="submit" value="ลบ" />                
+                        }
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+    <p>
+    </p>
+</div>

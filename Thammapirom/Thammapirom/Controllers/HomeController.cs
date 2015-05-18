@@ -14,12 +14,14 @@ namespace Thammapirom.Controllers
         private IGalleryImageRepository repository2;
         private IBackgroundRepository repository3;
         private IActivityClipRepository repository4;
-        public HomeController(IWelcomeImageRepository welcomeImageRepository, IGalleryImageRepository galleryImageRepository, IBackgroundRepository backgroundRepository, IActivityClipRepository activityClipRepository)
+        private IDhammaQARepository repository5;
+        public HomeController(IWelcomeImageRepository welcomeImageRepository, IGalleryImageRepository galleryImageRepository, IBackgroundRepository backgroundRepository, IActivityClipRepository activityClipRepository, IDhammaQARepository dhammaQARepository)
         {
             this.repository = welcomeImageRepository;
             this.repository2 = galleryImageRepository;
             this.repository3 = backgroundRepository;
             this.repository4 = activityClipRepository;
+            this.repository5 = dhammaQARepository;
         }
         public FileContentResult GetWelcomeImage(int imageId)
         {
@@ -77,9 +79,28 @@ namespace Thammapirom.Controllers
         {
             ViewBag.Message = "ถาม-ตอบธรรมะ";
 
-            return View();
+            return View(repository5.DhammaQAs);
         }
+        public ViewResult SendDhammaQ()
+        {
 
+            return View("SendDhammaQ", new DhammaQA());
+        }
+        [HttpPost]
+        public ActionResult SendDhammaQ(DhammaQA dhammaQA)
+        {
+            if (ModelState.IsValid)
+            {
+                repository5.SaveDhammaQA(dhammaQA);
+                //TempData["message"] = string.Format("{0} has been saved", background.Name);
+                return RedirectToAction("DhammaQA");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(dhammaQA);
+            }
+        }
         public ActionResult Gallery()
         {
             ViewBag.Message = "แกลอรี่";
@@ -114,5 +135,6 @@ namespace Thammapirom.Controllers
 
             return View();
         }
+
     }
 }

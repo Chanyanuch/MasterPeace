@@ -6,8 +6,9 @@
 }
 
 <h2>EditBackgroundInfo</h2>
-@using (Html.BeginForm("EditBackground","Admin")) {
-@Html.EditorForModel()
-<input type="submit" value="Save" />
-@Html.ActionLink("Cancel and return Background Managing Page", "BackgroundManaging")
+@using (Html.BeginForm("EditBackground", "Admin"))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return Background Managing Page", "BackgroundManaging")
 }

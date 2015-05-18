@@ -1,0 +1,45 @@
+﻿@model Thammapirom.Models.DhammaQA
+@{ ViewBag.Title = "ส่งคำถาม";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <style>
+                .editor-field {
+                    margin-bottom: .8em;
+                }
+
+                .editor-label {
+                    font-weight: bold;
+                }
+
+                    .editor-label:after {
+                        content: ":";
+                    }
+
+                .text-box {
+                    width: 60em;
+                }
+
+                .multi-line {
+                    height: 5em;
+                    font-family: Segoe UI, Verdana;
+                }
+            </style>
+            <p style="font-family: Kunlasatri; font-size: 20pt;">
+
+                @using (Html.BeginForm("SendDhammaQ", "Home"))
+                {
+                    @Html.EditorFor(Model=>Model.Question)
+                 
+                    <input type="submit" value="ส่งคำถาม" />
+                }
+
+            </p>
+        </div>
+    </section>
+}

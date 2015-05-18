@@ -3,39 +3,56 @@
     ViewBag.Title = "ActivityClipManaging";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<style>
+    table, td, th {
+        border: 1px solid red;
+    }
 
-<h2>Activity Clip Managing Page</h2>
+    th {
+        background-color: red;
+        color: white;
+    }
+
+    td {
+        padding: 10px;
+    }
+</style>
+<h2>หน้าจัดการวิดีโอกิจกรรม</h2>
 
 <div class="item">
-    <table class="Grid">
-<tr>
-<th>Clip ID</th>
-<th>Clip Title</th>
-<th>Clip Content</th>
-<th>Actions</th>
-</tr>
-        
-    @foreach (var clip in Model)
-    {
-        <tr>
-        @if (clip.ClipEmbedCode != null)
-        {
-           <td>@clip.ClipID</td>
-            <td>@clip.ClipTitle</td>
-            <td><iframe width="160" height="120" src="@clip.ClipEmbedCode" frameborder="0" allowfullscreen></iframe></td>
-       
-             <td>@using (Html.BeginForm("DeleteActivityClip","Admin")) { 
-                     @Html.Hidden("ClipID", clip.ClipID)
-                <input type="submit" value="Delete"/> 
-                
-}
-                 </td>
-        }
-    </tr>
-            }
-        
-        </table>
-    <p>
-    @Html.ActionLink("Add New Activity Clip", "EditActivityClip")
+        <p>
+        @Html.ActionLink("เพิ่มคลิปกิจกรรม", "AddActivityClip")
     </p>
+    <table>
+        <tr>
+            <th>ลำดับคลิป</th>
+            <th>ชื่อคลิป</th>
+            <th>ตัวอย่างคลิป</th>
+            <th>ส่วนจัดการ</th>
+        </tr>
+
+        @foreach (var clip in Model)
+        {
+            <tr>
+                @if (clip.ClipEmbedCode != null)
+                {
+                    <td>@clip.ClipID</td>
+                    <td>@clip.ClipTitle</td>
+                    <td>
+                        <iframe width="160" height="120" src="@clip.ClipEmbedCode" frameborder="0" allowfullscreen></iframe>
+                    </td>
+       
+                    <td>@using (Html.BeginForm("DeleteActivityClip", "Admin"))
+                        { 
+                        @Html.Hidden("ClipID", clip.ClipID)
+                        <input type="submit" value="ลบ" /> 
+                
+                        }
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+
 </div>

@@ -16,9 +16,9 @@ namespace Thammapirom.Models
         [Key]
         [HiddenInput(DisplayValue = false)]
         public int ClipID { get; set; }
-        [Display(Name = "Clip Title")]
+        [Display(Name = "ชื่อคลิป")]
         public string ClipTitle { get; set; }
-        [Display(Name = "Clip Embed Code")]
+        [Display(Name = "ลิ้ง")]
         public string ClipEmbedCode { get; set; }      
     }
 }

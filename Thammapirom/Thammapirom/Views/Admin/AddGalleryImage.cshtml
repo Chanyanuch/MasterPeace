@@ -7,7 +7,7 @@
 }
 
 <h2>AddGalleryImage</h2>
-@using (Html.BeginForm("Index", "Admin",
+@using (Html.BeginForm("GalleryManaging", "Admin",
 FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
@@ -26,5 +26,5 @@ src="@Url.Action("GetImage", "Product", new { Model.ImageID })" />
             <input type="file" name="Image" /></div>
     </div>
     <input type="submit" value="Save" />
-    @Html.ActionLink("Cancel and return to List", "Index")
+    @Html.ActionLink("Cancel and return to List", "GalleryManaging")
 }
