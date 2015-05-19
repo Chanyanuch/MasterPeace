@@ -31,6 +31,9 @@ namespace Thammapirom.Infrastructure
            ninjectKernel.Bind<IBackgroundRepository>().To<EFBackgroundRepository>();
            ninjectKernel.Bind<IActivityClipRepository>().To<EFActivityClipRepository>();
            ninjectKernel.Bind<IDhammaQARepository>().To<EFDhammaQARepository>();
+           ninjectKernel.Bind<IAnnualEventRepository>().To<EFAnnualEventRepository>();
+           ninjectKernel.Bind<IOtherEventRepository>().To<EFOtherEventRepository>();
+           ninjectKernel.Bind<IContactRepository>().To<EFContactRepository>();
         }
     }
 }

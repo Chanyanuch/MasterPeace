@@ -13,7 +13,7 @@
             {
                 <p style="font-size: 20pt; font-weight: 900; font-style: oblique; font-family: Kunlasatri; display: inline; background-color: #fff;">&nbsp;&nbsp; @Html.ActionLink("คลิ๊กที่นี่เพื่อตั้งคำถาม", "SendDhammaQ")&nbsp;&nbsp;&nbsp;&nbsp;</p>
                           
-                foreach (var qa in Model)
+                foreach (var qa in Model.Reverse())
                 {
                     if (qa.Answer != null)
                     {

@@ -2,11 +2,6 @@
 <html lang="en">
 <head>
     <title></title>
-
-
-
-
-
 </head>
 <body>
     @model IEnumerable<Thammapirom.Models.GalleryImage>
@@ -15,41 +10,43 @@
     }
 
     @section featured {
+        <section class="featured">
+        <div class="content-wrapper">
+             
         <div class="imgdiv"></div>
 
-        <div id="ladiv" style="height: 252px; width: 334px;">
-           
-                @foreach (var item in Model)
-                {
-                    if (item.ImageData != null)
-                    {
-<img onmouseover="Big(this)" onmouseout="Small(this)" width="400" height="204" src="@Url.Action("GetGalleryImage", "Home", new { item.ImageID })"  />
-<script>
-    /* $(function () {
-         $("img.imgthumbnail").click(function (e) {
-             var largeImg = '<img src=' + $(this).attr("src") + '></img>';
-             $('#ladiv')
-                .html($(largeImg)
-                .animate({ height: '204', width: '400' }, 1600));
-         });
-     });
-     */
-    function Big(me) {
-        me.style.height = "408px";
-        me.style.width = "800px";
-    }
-    function Small(me) {
-        me.style.height = "204px";
-        me.style.width = "400px";
-    }
+    <div id="ladiv" style="height: 252px; width: 334px;">
 
-    </script>    
-                    }
+        @foreach (var item in Model)
+        {
+
+            if (item.ImageData != null)
+            {
+           <p class="background">
+                        <img onmouseover="Big(this)" onmouseout="Small(this)" width="200" height="102" src="@Url.Action("GetGalleryImage", "Home", new { item.ImageID })"  />
+                   </p>
+            <script>
+
+                function Big(me) {
+                    me.style.height = "408px";
+                    me.style.width = "800px";
                 }
-            
+                function Small(me) {
+                    me.style.height = "102px";
+                    me.style.width = "200px";
+                }
 
-        </div>
+            </script>    
+                    
+            }
 
-    }
+        }
+        
+
+    </div>
+                 
+            </div>
+            </section>
+     }
 </body>
 </html>

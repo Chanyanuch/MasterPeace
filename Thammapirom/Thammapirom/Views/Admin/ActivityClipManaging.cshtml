@@ -17,42 +17,44 @@
         padding: 10px;
     }
 </style>
-<h2>หน้าจัดการวิดีโอกิจกรรม</h2>
+@if (Session["LoginStatus"] == "True"){
+    <h2>หน้าจัดการวิดีโอกิจกรรม</h2>
 
-<div class="item">
+    <div class="item">
         <p>
-        @Html.ActionLink("เพิ่มคลิปกิจกรรม", "AddActivityClip")
-    </p>
-    <table>
-        <tr>
-            <th>ลำดับคลิป</th>
-            <th>ชื่อคลิป</th>
-            <th>ตัวอย่างคลิป</th>
-            <th>ส่วนจัดการ</th>
-        </tr>
-
-        @foreach (var clip in Model)
-        {
+            @Html.ActionLink("เพิ่มคลิปกิจกรรม", "AddActivityClip")
+        </p>
+        <table>
             <tr>
-                @if (clip.ClipEmbedCode != null)
+                <th>ลำดับคลิป</th>
+                <th>ชื่อคลิป</th>
+                <th>ตัวอย่างคลิป</th>
+                <th>ส่วนจัดการ</th>
+            </tr>
+
+            @foreach (var clip in Model)
+        {
+                <tr>
+                    @if (clip.ClipEmbedCode != null)
                 {
-                    <td>@clip.ClipID</td>
-                    <td>@clip.ClipTitle</td>
-                    <td>
-                        <iframe width="160" height="120" src="@clip.ClipEmbedCode" frameborder="0" allowfullscreen></iframe>
-                    </td>
+                        <td>@clip.ClipID</td>
+                        <td>@clip.ClipTitle</td>
+                        <td>
+                            <iframe width="160" height="120" src="@clip.ClipEmbedCode" frameborder="0" allowfullscreen></iframe>
+                        </td>
        
-                    <td>@using (Html.BeginForm("DeleteActivityClip", "Admin"))
+                        <td>@using (Html.BeginForm("DeleteActivityClip", "Admin"))
                         { 
-                        @Html.Hidden("ClipID", clip.ClipID)
-                        <input type="submit" value="ลบ" /> 
+                            @Html.Hidden("ClipID", clip.ClipID)
+                            <input type="submit" value="ลบ" /> 
                 
                         }
-                    </td>
+                        </td>
                 }
-            </tr>
+                </tr>
         }
 
-    </table>
+        </table>
 
-</div>
+    </div>
+    else{}

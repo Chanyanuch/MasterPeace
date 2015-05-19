@@ -52,7 +52,7 @@
                         <li>
                             <img src="../Images/flowerLeft.png" width="70" />&nbsp;&nbsp;@Html.ActionLink("หน้าแรก", "Index", "Home")</li>
                         <li>@Html.ActionLink("ประวัติ", "Background", "Home")</li>
-                        <li>@Html.ActionLink("ข่าวสาร-กิจกรรม", "NewsActivities", "Home")</li>
+                        <li>@Html.ActionLink("ข่าวสาร-กิจกรรม", "AnnualEvent", "Home")</li>
                         <li>@Html.ActionLink("สาระธรรม", "DhammaContent", "Home")</li>
 
                         <li class="dropdown">
@@ -94,23 +94,15 @@
             </div>
         </div>
     </header>
-    <div id="body">
+    
+    <div id="body" style="">
         @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix">
+       
             @RenderBody()
            
-
             @RenderSection("scripts", required: false)
-        </section>
+    
     </div>
-    <footer>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p>&copy; @DateTime.Now.Year - Wat Pha Thammapirom Web Application</p>
-            </div>
-        </div>
-    </footer>
-
 
 
 </body>

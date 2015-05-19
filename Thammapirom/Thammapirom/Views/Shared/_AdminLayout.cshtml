@@ -7,6 +7,38 @@
 </head>
 <body>
     <div>
+        <div class="menubar">
+
+            <nav>
+                <ul id="menu">
+                   
+                    
+                     @if (Session["LoginStatus"]=="True")
+                     {
+                    <li>@Html.ActionLink("แก้ไขรูปภาพหน้าแรก", "IndexManaging", "Admin")</li>
+                    <li>@Html.ActionLink("แก้ไขประวัติ", "BackgroundManaging", "Admin")</li>
+                    <li>@Html.ActionLink("แก้ไขกิจกรรมประจำปี", "AnnualEventManaging", "Admin")</li>
+                    <li>@Html.ActionLink("แก้ไขกิจกรรมทั่วไป", "OtherEventManaging", "Admin")</li>
+                    <li>@Html.ActionLink("แก้ไขสาระธรรม", "DhammaContent", "Admin")</li>
+                    <li>@Html.ActionLink("ตอบคำถามกระทู้ธรรม", "DhammaQAManaging", "Admin")</li>
+                    <li>@Html.ActionLink("แก้ไขภาพในแกลอรี่", "GalleryManaging", "Admin")</li>
+                    <li>@Html.ActionLink("แก้ไขวิดีโอกิจกรรม", "ActivityClipManaging", "Admin")</li>
+                    <li>@Html.ActionLink("แก้ไขอินเตอร์เน็ตทีวี", "InternetTVManaging", "Admin")</li>
+                    <li>@Html.ActionLink("แก้ไขแผนที่", "MapManaging", "Admin")</li>
+                    <li>@Html.ActionLink("แก้ไขข้อมูลติดต่อวัด", "ContactManaging", "Admin")</li>
+                      
+                         <li>@Html.ActionLink("ออกจากระบบ","Logout","Admin")</li>
+                        
+                     }else{
+                     <li>@Html.ActionLink("เข้าสู่ระบบ", "Login", "Admin", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>  
+                          
+                     }
+                          </ul>
+               
+            </nav>
+           
+        </div>
+
         @RenderBody()
     </div>
 </body>

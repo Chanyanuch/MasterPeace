@@ -13,7 +13,8 @@ namespace Thammapirom.Concrete
         public DbSet<GalleryImage> GalleryImages { get; set; }
         public DbSet<ActivityClip> ActivityClips { get; set; }
         public DbSet<DhammaQA> DhammaQAs { get; set; }
-        public DbSet<AnnualEvent> AnnualEvents { get; set; }
         public DbSet<OtherEvent> OtherEvents { get; set; }
+        public DbSet<AnnualEvent> AnnualEvents { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
     }
 }

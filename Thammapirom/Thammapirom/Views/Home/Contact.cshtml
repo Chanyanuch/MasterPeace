@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Thammapirom.Models.Contact
+@{
     ViewBag.Title = "ติดต่อวัดป่าธรรมาภิรมย์";
 }
 
@@ -54,11 +55,12 @@
     <p>
        
     </p>
-    <ul>
-        <li>ชื่อผู้ติดต่อ:*</li>
-        <li>อีเมล์:*</li>
-        <li>ชื่อเรื่องติดต่อ:</li>
-         <li>ข้อความ:</li>
-    </ul>
+    @using (Html.BeginForm())
+                {
+                   
+                    @Html.EditorForModel()
+                 
+                    <input type="submit" value="ส่งข้อความ" />
+                }
 </aside>
   

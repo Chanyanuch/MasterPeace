@@ -9,6 +9,8 @@ using Thammapirom.Concrete;
 using System.Data;
 using System.Data.Common;
 using System.Transactions;
+using System.Web.Security;
+using System.Windows.Forms;
 namespace Thammapirom.Controllers
 {
     public class AdminController : Controller
@@ -18,16 +20,50 @@ namespace Thammapirom.Controllers
         private IBackgroundRepository repository3;
         private IActivityClipRepository repository4;
         private IDhammaQARepository repository5;
-
-        public AdminController(IWelcomeImageRepository repo, IGalleryImageRepository repo2, IBackgroundRepository repo3, IActivityClipRepository repo4, IDhammaQARepository repo5)
+        private IAnnualEventRepository repository6;
+        private IOtherEventRepository repository7;
+        public AdminController(IWelcomeImageRepository repo, IGalleryImageRepository repo2, IBackgroundRepository repo3, IActivityClipRepository repo4, IDhammaQARepository repo5,IAnnualEventRepository repo6,IOtherEventRepository repo7)
         {
             repository = repo;
             repository2 = repo2;
             repository3 = repo3;
             repository4 = repo4;
             repository5 = repo5;
+            repository6 = repo6;
+            repository7 = repo7;
         }
-
+        
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(AdminAccount model, string returnUrl)
+        {
+            if (model.UserName == "admin" && model.Password == "admin1234")
+            {
+                Session["LoginStatus"] = "True";
+                return RedirectToAction("IndexManaging");
+            }
+            else {
+                System.Windows.Forms.MessageBox.Show("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง");
+                return View();
+            }
+        }
+        [AllowAnonymous]
+        public ActionResult Logout()
+        {
+            Session.Remove("LoginStatus");
+            return RedirectToAction("Index");
+        }
+        public ViewResult Index() {
+            return View();
+        }
+      
         public ViewResult IndexManaging()
         {
             return View(repository.WelcomeImages);
@@ -85,7 +121,16 @@ namespace Thammapirom.Controllers
 
             return View("AddActivityClip", new ActivityClip());
         }
+        public ViewResult AddAnnualEvent()
+        {
 
+            return View("AddAnnualEvent", new AnnualEvent());
+        }
+        public ViewResult AddOtherEvent()
+        {
+
+            return View("AddOtherEvent", new OtherEvent());
+        }
         public ViewResult ReplyDhammaQA(int qaID)
         {
             DhammaQA dhammaQA = repository5.DhammaQAs.FirstOrDefault(p => p.QAID == qaID);
@@ -98,6 +143,14 @@ namespace Thammapirom.Controllers
         public ViewResult DhammaQAManaging()
         {
             return View(repository5.DhammaQAs);
+        }
+        public ViewResult AnnualEventManaging()
+        {
+            return View(repository6.AnnualEvents);
+        }
+        public ViewResult OtherEventManaging()
+        {
+            return View(repository7.OtherEvents);
         }
         /*[HttpPost]
         public ActionResult DeleteImage(int ImageID)
@@ -165,6 +218,26 @@ namespace Thammapirom.Controllers
                 TempData["message"] = "Delete success";
             }
             return RedirectToAction("DhammaQAManaging");
+        }
+        [HttpPost]
+        public ActionResult DeleteAnnualEvent(int EventID)
+        {
+            AnnualEvent deletedAnnualEvent = repository6.DeleteAnnualEvent(EventID);
+            if (deletedAnnualEvent != null)
+            {
+                TempData["message"] = "Delete success";
+            }
+            return RedirectToAction("AnnualEventManaging");
+        }
+        [HttpPost]
+        public ActionResult DeleteOtherEvent(int EventID)
+        {
+            OtherEvent deletedOtherEvent = repository7.DeleteOtherEvent(EventID);
+            if (deletedOtherEvent != null)
+            {
+                TempData["message"] = "Delete success";
+            }
+            return RedirectToAction("OtherEventManaging");
         }
         /*
         [HttpGet]
@@ -256,12 +329,39 @@ namespace Thammapirom.Controllers
             }
         }
         [HttpPost]
+        public ActionResult AddAnnualEvent(AnnualEvent annualEvent)
+        {
+            if (ModelState.IsValid)
+            {
+                repository6.SaveAnnualEvent(annualEvent);
+                return RedirectToAction("AnnualEventManaging");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(annualEvent);
+            }
+        }
+        [HttpPost]
+        public ActionResult AddOtherEvent(OtherEvent otherEvent)
+        {
+            if (ModelState.IsValid)
+            {
+                repository7.SaveOtherEvent(otherEvent);             
+                return RedirectToAction("AnnualEventManaging");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(otherEvent);
+            }
+        }
+        [HttpPost]
         public ActionResult AddActivityClip(ActivityClip activityClip)
         {
             if (ModelState.IsValid)
             {
                 repository4.SaveActivityClip(activityClip);
-                //TempData["message"] = string.Format("{0} has been saved", background.Name);
                 return RedirectToAction("ActivityClipManaging");
             }
             else
@@ -277,7 +377,6 @@ namespace Thammapirom.Controllers
             {
 
                 repository5.SaveDhammaQA(dhammaQA);
-                //TempData["message"] = string.Format("{0} has been saved", background.Name);
                 return RedirectToAction("DhammaQAManaging");
             }
             else

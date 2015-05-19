@@ -4,7 +4,7 @@
     ViewBag.Title = "Admin: Edit Index Page ";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+ @if (Session["LoginStatus"]=="True"){
 <div class="item">
     <table class="Grid">
 <tr>
@@ -36,3 +36,4 @@
     @Html.ActionLink("Add New Image", "AddWelcomeImage")
     </p>
 </div>
+ }else{}

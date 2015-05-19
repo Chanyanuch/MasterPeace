@@ -1,17 +1,20 @@
 ﻿@model IEnumerable<Thammapirom.Models.Background>
 @{
-    ViewBag.Title = "Admin: Edit Background";
+    ViewBag.Title = "แก้ไขประวัติวัด";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h2>หน้าจัดการประวัติวัด</h2>
-@foreach (var background in Model)
-{ 
-    <table>
-        <tr>
-            <td>
-                @background.BackgroundInfo
-            </td>
-            <td>@Html.ActionLink("แก้ไข", "EditBackgroundInfo", new { background.BackgroundID })</td>
-        </tr>
-    </table>
-}
+@if (Session["LoginStatus"] == "True")
+{
+    <h2>หน้าจัดการประวัติวัด</h2>
+    foreach (var background in Model)
+    { 
+        <table>
+            <tr>
+                <td>
+                    @background.BackgroundInfo
+                </td>
+                <td>@Html.ActionLink("แก้ไข", "EditBackgroundInfo", new { background.BackgroundID })</td>
+            </tr>
+        </table>
+    }}
+else { }

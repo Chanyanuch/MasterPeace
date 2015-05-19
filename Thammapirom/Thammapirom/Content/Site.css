@@ -5,7 +5,8 @@
 }
 
 body {
-    background: url("../Images/BGwat-line.png");
+    background-image: url("../Images/BGwat-line.png");
+    background-repeat: repeat-y;
     border-top: solid 10px #000;
     color: #d6a639;
     font-size: .85em;
@@ -119,12 +120,7 @@ header .content-wrapper {
     padding-top: 20px;
 }
 
-footer {
-    clear: both;
-    background-color: #e2e2e2;
-    font-size: .8em;
-    height: 100px;
-}
+
 
 
 /* site title

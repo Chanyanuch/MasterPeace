@@ -7,36 +7,37 @@ using System;
 
 namespace Thammapirom.Concrete
 {
-    public class EFAnnualEventRepository : IEventRepository
+    public class EFAnnualEventRepository : IAnnualEventRepository
     {
         private EFDbContext context = new EFDbContext();
         public IQueryable<AnnualEvent> AnnualEvents
         {
             get { return context.AnnualEvents; }
         }
-        public void SaveEvent(AnnualEvent evt)
+        public void SaveAnnualEvent(AnnualEvent aev)
         {
-            if (evt.EventID == 0)
+            if (aev.EventID == 0)
             {
-                context.AnnualEvents.Add(evt);
+                context.AnnualEvents.Add(aev);
             }
             else
             {
-                Event dbEntry = context.AnnualEvents.Find(evt.EventID);
+                AnnualEvent dbEntry = context.AnnualEvents.Find(aev.EventID);
                 if (dbEntry != null)
                 {
 
-                    dbEntry.EventTitle = evt.EventTitle;
-                    dbEntry.EventDate = evt.EventDate;
-                    dbEntry.EventTime = evt.EventTime;
-                    dbEntry.EventLocation = evt.EventLocation;
+                    dbEntry.EventTitle = aev.EventTitle;
+                    dbEntry.EventDetail = aev.EventDetail;
+                    dbEntry.EventDate = aev.EventDate;
+                    dbEntry.EventTime = aev.EventTime;
+                    dbEntry.EventLocation = aev.EventLocation;
                 }
             }
             context.SaveChanges();
         }
-        public Event DeleteEvent(int eventID)
+        public AnnualEvent DeleteAnnualEvent(int aEventID)
         {
-            AnnualEvent dbEntry = context.AnnualEvents.Find(eventID);
+            AnnualEvent dbEntry = context.AnnualEvents.Find(aEventID);
             if (dbEntry != null)
             {
 
