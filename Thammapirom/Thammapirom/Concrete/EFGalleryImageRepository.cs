@@ -27,7 +27,6 @@ namespace Thammapirom.Concrete
                 {
 
                     dbEntry.ImageData = galleryImage.ImageData;
-                    dbEntry.ImageMimeType = galleryImage.ImageMimeType;
                 }
             }
             context.SaveChanges();

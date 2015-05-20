@@ -1,0 +1,18 @@
+﻿@model Thammapirom.Models.AnnualEvent
+
+@{
+    ViewBag.Title = "แก้ไขรายละเอียดกิจกรรมประจำปี";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@if (Session["LoginStatus"] == "True")
+{
+    <h2>แก้ไขรายละเอียดกิจกรรมประจำปี</h2>
+    using (Html.BeginForm("AddAnnualEvent", "Admin"))
+    {
+            @Html.ValidationSummary()
+        @Html.EditorForModel()
+        <input type="submit" value="บันทึก" />
+        @Html.ActionLink("ยกเลิกและกลับไปยังหน้าจัดการกิจกรรมประจำปี", "AnnualEventManaging")
+    }
+}
+else { }

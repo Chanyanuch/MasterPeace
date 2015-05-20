@@ -13,11 +13,13 @@ namespace Thammapirom.Models
         [Key]
         [HiddenInput(DisplayValue = false)]
         public int QAID { get; set; }
+     
         [DataType(DataType.MultilineText)]
         [Display(Name = "คำถาม")]
         public string Question { get; set; }
+
         [DataType(DataType.MultilineText)]
-       
+     
         [Display(Name = "Dhamma Answer")]
         public string Answer { get; set; }      
     }

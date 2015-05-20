@@ -16,21 +16,21 @@ namespace Thammapirom.Concrete
         }
         public void SaveAnnualEvent(AnnualEvent aev)
         {
-            if (aev.EventID == 0)
+            if (aev.aEventID == 0)
             {
                 context.AnnualEvents.Add(aev);
             }
             else
             {
-                AnnualEvent dbEntry = context.AnnualEvents.Find(aev.EventID);
+                AnnualEvent dbEntry = context.AnnualEvents.Find(aev.aEventID);
                 if (dbEntry != null)
                 {
 
-                    dbEntry.EventTitle = aev.EventTitle;
-                    dbEntry.EventDetail = aev.EventDetail;
-                    dbEntry.EventDate = aev.EventDate;
-                    dbEntry.EventTime = aev.EventTime;
-                    dbEntry.EventLocation = aev.EventLocation;
+                    dbEntry.aEventTitle = aev.aEventTitle;
+                    dbEntry.aEventDetail = aev.aEventDetail;
+                    dbEntry.aEventDate = aev.aEventDate;
+                    dbEntry.aEventTime = aev.aEventTime;
+                    dbEntry.aEventLocation = aev.aEventLocation;
                 }
             }
             context.SaveChanges();

@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Thammapirom.Infrastructure;
+using Thammapirom.Concrete;
+using System.Data.Entity;
 namespace Thammapirom
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -16,6 +18,7 @@ namespace Thammapirom
     {
         protected void Application_Start()
         {
+            Database.SetInitializer<EFDbContext>(null);
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

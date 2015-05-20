@@ -167,8 +167,8 @@
     <Compile Include="Abstract\IAnnualEventRepository.cs" />
     <Compile Include="Abstract\IBackgroundRepository.cs" />
     <Compile Include="Abstract\IContactRepository.cs" />
+    <Compile Include="Abstract\ICustomEventRepository.cs" />
     <Compile Include="Abstract\IDhammaQARepository.cs" />
-    <Compile Include="Abstract\IOtherEventRepository.cs" />
     <Compile Include="Abstract\IGalleryImageRepository.cs" />
     <Compile Include="Abstract\IWelcomeImageRepository.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -177,7 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Concrete\EFContactRepository.cs" />
-    <Compile Include="Concrete\EFOtherEventRepository.cs" />
+    <Compile Include="Concrete\EFCustomEventRepository.cs" />
     <Compile Include="Concrete\EFActivityClipRepository.cs" />
     <Compile Include="Concrete\EFBackgroundRepository.cs" />
     <Compile Include="Concrete\EFDhammaQARepository.cs" />
@@ -198,8 +198,8 @@
     <Compile Include="Models\AdminAccount.cs" />
     <Compile Include="Models\Background.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\CustomEvent.cs" />
     <Compile Include="Models\DhammaQA.cs" />
-    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\GalleryImage.cs" />
     <Compile Include="Models\AnnualEvent.cs" />
     <Compile Include="Models\OtherEvent.cs" />
@@ -292,6 +292,15 @@
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\pathammapirom - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\pathammapirom - FTP %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\pathammapirom - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\pathammapirom - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\thammapirom - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\thammapirom - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\watpathammapirom - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\watpathammapirom - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
@@ -373,13 +382,19 @@
     <Content Include="Views\Admin\DhammaQAManaging.cshtml" />
     <Content Include="Views\Admin\ReplyDhammaQA.cshtml" />
     <Content Include="Views\Admin\AnnualEventManaging.cshtml" />
-    <Content Include="Views\Admin\OtherEventManaging.cshtml" />
+    <Content Include="Views\Admin\CustomEventManaging.cshtml" />
     <Content Include="Views\Admin\AddAnnualEvent.cshtml" />
-    <Content Include="Views\Admin\AddOtherEvent.cshtml" />
+    <Content Include="Views\Admin\AddCustomEvent.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Home\AnnualEventDetail.cshtml" />
+    <Content Include="Views\Admin\EditAnnualEvent.cshtml" />
+    <Content Include="Views\Admin\EditCustomEvent.cshtml" />
+    <Content Include="Views\Admin\AddBackgroundInfo.cshtml" />
+    <Content Include="Views\Shared\_GalleryLayout.cshtml" />
+    <Content Include="Views\Home\CustomEvent.cshtml" />
+    <Content Include="Views\Home\CustomEventDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

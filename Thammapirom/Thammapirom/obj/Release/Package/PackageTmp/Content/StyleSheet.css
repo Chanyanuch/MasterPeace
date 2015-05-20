@@ -1,0 +1,14 @@
+﻿ .imgthumbnail 
+        { 
+            height:102px; 
+            width:200px; 
+        } 
+        .imgdiv 
+        { 
+            height:204px; 
+            width:400px; 
+            background-color:#FFF;
+            margin : 0px auto;
+            padding:10px; 
+            border:solid 1px #D3CFCB;             
+        }      

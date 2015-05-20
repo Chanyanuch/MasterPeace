@@ -1,0 +1,20 @@
+﻿@model Thammapirom.Models.CustomEvent
+
+@{
+    ViewBag.Title = "แก้ไขรายละเอียดกิจกรรมประจำทั่วไป";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@if (Session["LoginStatus"] == "True")
+{
+    <h2>แก้ไขรายละเอียดกิจกรรมทั่วไป</h2>
+    using (Html.BeginForm("EditCustomEvent", "Admin"))
+    {
+           @Html.ValidationSummary()
+        @Html.EditorForModel()
+     @Html.HiddenFor(Model => Model.cEventID)
+  
+        <input type="submit" value="บันทึก" />
+        @Html.ActionLink("ยกเลิกและกลับไปยังหน้าจัดการกิจกรรมประจำปี", "CustomEventManaging")
+    }
+}
+else { }

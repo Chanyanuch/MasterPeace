@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Thammapirom.Models.CustomEvent>
+
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+
+           
+                @foreach (var cEvent in Model.Reverse())
+                {
+                                
+                <table border="1" style="width: 960px; background-color: rgba(255, 255, 255, 0.90); font-family: Kunlasatri; font-size: 14pt; border-spacing: 10px; border-collapse: separate;">
+                    <tr>
+                        <td style="padding: 10px;">
+                            <p style="font-weight: bold; font-size: 24pt;">&nbsp;&nbsp;@cEvent.cEventTitle</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">
+                            <p style="font-size: 16pt;">&nbsp;&nbsp;@cEvent.cEventDetail</p>
+                            
+                            <p style="text-align: right; text-decoration: underline">@Html.ActionLink("รายละเอียดกิจกรรม", "CustomEventDetail", new { cEventID = cEvent.cEventID })</p>
+                       <p style="text-align:center;"><img src="http://i.imgur.com/UZGqsGO.png"></p>
+                             </td>
+                    </tr>
+                   
+                </table>  
+                <p></p>   }
+
+
+
+
+            }
+
+
+
+</div>
+    </section>
+}

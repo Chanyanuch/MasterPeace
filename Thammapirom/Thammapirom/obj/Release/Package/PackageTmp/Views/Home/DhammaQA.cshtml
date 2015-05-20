@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Thammapirom.Models.DhammaQA>
+@{ ViewBag.Title = "ถาม-ตอบธรรมะ";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+
+            @if (Request.IsAuthenticated)
+            {
+                <p style="font-size: 20pt; font-weight: 900; font-style: oblique; font-family: Kunlasatri; display: inline; background-color: #fff;">&nbsp;&nbsp; @Html.ActionLink("คลิ๊กที่นี่เพื่อตั้งคำถาม", "SendDhammaQ")&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                          
+                foreach (var qa in Model.Reverse())
+                {
+                    if (qa.Answer != null)
+                    {
+                <table border="1" style="width: 960px; background-color: rgba(255, 255, 255, 0.90); font-family: Kunlasatri; font-size: 14pt; border-spacing: 10px; border-collapse: separate;">
+                    <tr>
+                        <td style="padding: 10px;">
+                            <p style="font-weight: bolder; background-color: #d8c462; font-size: 24pt;">&nbsp;&nbsp;ถาม</p>
+                            <p style="font-style: oblique;">@qa.Question</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">
+                            <p style="font-weight: bolder; background-color: #d8c462; font-size: 24pt;">&nbsp;&nbsp;ตอบ</p>
+                            <p>@qa.Answer</p>
+                        </td>
+                    </tr>
+                </table>  
+                <p></p>   }
+                    else
+                    {
+
+                    }
+                }
+
+
+            }
+            else
+            {
+                <p class="background">สำหรับสมาชิกเท่านั้น</p>
+            }
+
+
+        </div>
+    </section>
+}

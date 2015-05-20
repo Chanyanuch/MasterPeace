@@ -12,6 +12,7 @@ namespace Thammapirom.Models
         [Key]
         [HiddenInput(DisplayValue = false)]
         public int BackgroundID { get; set; }
+         [Required(ErrorMessage = "กรุณาระบุข้อมูล")]
         public string BackgroundInfo { get; set; }      
     }
 }

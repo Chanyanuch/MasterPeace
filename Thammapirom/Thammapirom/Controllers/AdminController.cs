@@ -15,24 +15,25 @@ namespace Thammapirom.Controllers
 {
     public class AdminController : Controller
     {
-        private IWelcomeImageRepository repository;
-        private IGalleryImageRepository repository2;
-        private IBackgroundRepository repository3;
-        private IActivityClipRepository repository4;
-        private IDhammaQARepository repository5;
-        private IAnnualEventRepository repository6;
-        private IOtherEventRepository repository7;
-        public AdminController(IWelcomeImageRepository repo, IGalleryImageRepository repo2, IBackgroundRepository repo3, IActivityClipRepository repo4, IDhammaQARepository repo5,IAnnualEventRepository repo6,IOtherEventRepository repo7)
+        private IWelcomeImageRepository welcomeImageRepo;
+        private IGalleryImageRepository galleryImageRepo;
+        private IBackgroundRepository backgroundRepo;
+        private IActivityClipRepository activityClipRepo;
+        private IDhammaQARepository dhammaQARepo;
+        private IAnnualEventRepository annualEventRepo;
+        private ICustomEventRepository customEventRepo;
+        // Constructor //
+        public AdminController(IWelcomeImageRepository repo, IGalleryImageRepository repo2, IBackgroundRepository repo3, IActivityClipRepository repo4, IDhammaQARepository repo5, IAnnualEventRepository repo6, ICustomEventRepository repo8)
         {
-            repository = repo;
-            repository2 = repo2;
-            repository3 = repo3;
-            repository4 = repo4;
-            repository5 = repo5;
-            repository6 = repo6;
-            repository7 = repo7;
+            welcomeImageRepo = repo;
+            galleryImageRepo = repo2;
+            backgroundRepo = repo3;
+            activityClipRepo = repo4;
+            dhammaQARepo = repo5;
+            annualEventRepo = repo6;
+            customEventRepo = repo8;
         }
-        
+        // Admin Login-Logout Controller //
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -49,8 +50,8 @@ namespace Thammapirom.Controllers
                 Session["LoginStatus"] = "True";
                 return RedirectToAction("IndexManaging");
             }
-            else {
-                System.Windows.Forms.MessageBox.Show("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง");
+            else
+            {
                 return View();
             }
         }
@@ -58,232 +59,29 @@ namespace Thammapirom.Controllers
         public ActionResult Logout()
         {
             Session.Remove("LoginStatus");
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
-        public ViewResult Index() {
+        public ViewResult Index()
+        {
             return View();
         }
-      
+
+        // Index Page Controller //
         public ViewResult IndexManaging()
         {
-            return View(repository.WelcomeImages);
+            return View(welcomeImageRepo.WelcomeImages);
         }
-
         public ViewResult AddWelcomeImage()
         {
             return View("AddWelcomeImage", new WelcomeImage());
         }
-        public ViewResult AddGalleryImage()
-        {
-            return View("AddGalleryImage", new GalleryImage());
-        }
-
         [HttpPost]
-        public ActionResult DeleteWelcomeImage(int ImageID)
-        {
-            WelcomeImage deletedWelcomeImage = repository.DeleteWelcomeImage(ImageID);
-            if (deletedWelcomeImage != null)
-            {
-
-
-                TempData["message"] = "Delete success";
-            }
-
-
-
-            return RedirectToAction("IndexManaging");
-        }
-        /*
-        public ActionResult Index()
-        {
-            using (EFDbContext contextObj = new EFDbContext())
-            {
-                var getAllImage = contextObj.GalleryImages.ToList();
-                return View(getAllImage);
-            }
-
-        }*/
-        public ViewResult GalleryManaging()
-        {
-            return View(repository2.GalleryImages);
-        }
-        public ViewResult EditBackgroundInfo(int backgroundId)
-        {
-            Background background = repository3.Backgrounds.FirstOrDefault(p => p.BackgroundID == backgroundId);
-            return View(background);
-        }
-        public ViewResult BackgroundManaging()
-        {
-            return View(repository3.Backgrounds);
-        }
-        public ViewResult AddActivityClip()
-        {
-
-            return View("AddActivityClip", new ActivityClip());
-        }
-        public ViewResult AddAnnualEvent()
-        {
-
-            return View("AddAnnualEvent", new AnnualEvent());
-        }
-        public ViewResult AddOtherEvent()
-        {
-
-            return View("AddOtherEvent", new OtherEvent());
-        }
-        public ViewResult ReplyDhammaQA(int qaID)
-        {
-            DhammaQA dhammaQA = repository5.DhammaQAs.FirstOrDefault(p => p.QAID == qaID);
-            return View(dhammaQA);
-        }
-        public ViewResult ActivityClipManaging()
-        {
-            return View(repository4.ActivityClips);
-        }
-        public ViewResult DhammaQAManaging()
-        {
-            return View(repository5.DhammaQAs);
-        }
-        public ViewResult AnnualEventManaging()
-        {
-            return View(repository6.AnnualEvents);
-        }
-        public ViewResult OtherEventManaging()
-        {
-            return View(repository7.OtherEvents);
-        }
-        /*[HttpPost]
-        public ActionResult DeleteImage(int ImageID)
-        {
-            
-            using (EFDbContext context = new EFDbContext())
-            {
-                using (TransactionScope scope = new TransactionScope())
-                {
-                    try
-                    {
-                        
-                        GalleryImage deletedImage = context.GalleryImages.Find(ImageID);
-                        if (deletedImage != null)
-                        {
-
-                            context.GalleryImages.Remove(deletedImage);
-                            context.SaveChanges();
-                            TempData["message"] = "Delete success";
-
-                            string filePath = Server.MapPath((deletedImage.ImagePath));
-                            if (System.IO.File.Exists(filePath))
-                            {
-                                System.IO.File.Delete(filePath);
-
-                            }
-                        }
-                        scope.Complete();
-                    }
-                    catch (Exception ex)
-                    {
-                        
-                    }
-                }
-            }
-            return RedirectToAction("Index");
-        }
-        */
-        [HttpPost]
-        public ActionResult DeleteGalleryImage(int ImageID)
-        {
-            GalleryImage deletedGalleryImage = repository2.DeleteGalleryImage(ImageID);
-            if (deletedGalleryImage != null)
-            {
-                TempData["message"] = "Delete success";
-            }
-            return RedirectToAction("GalleryManaging");
-        }
-        [HttpPost]
-        public ActionResult DeleteActivityClip(int clipID)
-        {
-            ActivityClip deletedActivityClip = repository4.DeleteActivityClip(clipID);
-            if (deletedActivityClip != null)
-            {
-                TempData["message"] = "Delete success";
-            }
-            return RedirectToAction("ActivityClipManaging");
-        }
-        [HttpPost]
-        public ActionResult DeleteDhammaQA(int QAID)
-        {
-            DhammaQA deletedDhammaQA = repository5.DeleteDhammaQA(QAID);
-            if (deletedDhammaQA != null)
-            {
-                TempData["message"] = "Delete success";
-            }
-            return RedirectToAction("DhammaQAManaging");
-        }
-        [HttpPost]
-        public ActionResult DeleteAnnualEvent(int EventID)
-        {
-            AnnualEvent deletedAnnualEvent = repository6.DeleteAnnualEvent(EventID);
-            if (deletedAnnualEvent != null)
-            {
-                TempData["message"] = "Delete success";
-            }
-            return RedirectToAction("AnnualEventManaging");
-        }
-        [HttpPost]
-        public ActionResult DeleteOtherEvent(int EventID)
-        {
-            OtherEvent deletedOtherEvent = repository7.DeleteOtherEvent(EventID);
-            if (deletedOtherEvent != null)
-            {
-                TempData["message"] = "Delete success";
-            }
-            return RedirectToAction("OtherEventManaging");
-        }
-        /*
-        [HttpGet]
-        public ActionResult AddImage()
-        {
-            return View();
-        }
-         * /
-        /*[HttpPost]
-        public ActionResult AddImage(HttpPostedFileBase ImagePath)
-        {
-            if (ImagePath != null)
-            {
-                string pic = System.IO.Path.GetFileName(ImagePath.FileName);
-                string path = System.IO.Path.Combine(
-                                       Server.MapPath("~/Content/images"), pic);
-                ImagePath.SaveAs(path);
-                using (EFDbContext myContext = new EFDbContext())
-                {
-                    GalleryImage galleryobj = new GalleryImage
-                    {
-                        ImagePath = "~/Content/images/" + pic
-                    };
-                    myContext.GalleryImages.Add(galleryobj);
-                    myContext.SaveChanges();
-
-                }
-
-            }
-
-            return RedirectToAction("Index", "Admin");
-        }
-         */
-        [HttpPost]
-        public ActionResult IndexManaging(WelcomeImage welcomeImage, HttpPostedFileBase image)
+        public ActionResult AddWelcomeImage(WelcomeImage welcomeImage)
         {
             if (ModelState.IsValid)
             {
-                if (image != null)
-                {
-                    welcomeImage.ImageMimeType = image.ContentType;
-                    welcomeImage.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(welcomeImage.ImageData, 0, image.ContentLength);
-                }
-                repository.SaveWelcomeImage(welcomeImage);
-                TempData["message"] = string.Format("{0} has been saved", welcomeImage.ImageID);
+                welcomeImageRepo.SaveWelcomeImage(welcomeImage);
+                //TempData["message"] = string.Format("{0} has been saved", welcomeImage.ImageID);
                 return RedirectToAction("IndexManaging");
             }
             else
@@ -293,32 +91,32 @@ namespace Thammapirom.Controllers
             }
         }
         [HttpPost]
-        public ActionResult GalleryManaging(GalleryImage galleryImage, HttpPostedFileBase image)
+        public ActionResult DeleteWelcomeImage(int ImageID)
         {
-            if (ModelState.IsValid)
+            WelcomeImage deletedWelcomeImage = welcomeImageRepo.DeleteWelcomeImage(ImageID);
+            if (deletedWelcomeImage != null)
             {
-                if (image != null)
-                {
-                    galleryImage.ImageMimeType = image.ContentType;
-                    galleryImage.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(galleryImage.ImageData, 0, image.ContentLength);
-                }
-                repository2.SaveGalleryImage(galleryImage);
-                TempData["message"] = string.Format("{0} has been saved", galleryImage.ImageID);
-                return RedirectToAction("GalleryManaging");
+                TempData["message"] = "Delete success";
             }
-            else
-            {
-                // there is something wrong with the data values
-                return View(galleryImage);
-            }
+
+            return RedirectToAction("IndexManaging");
+        }
+        // Background Page Controller //
+        public ViewResult BackgroundManaging()
+        {
+            return View(backgroundRepo.Backgrounds);
+        }
+        public ViewResult AddBackgroundInfo()
+        {
+
+            return View("AddBackgroundInfo", new Background());
         }
         [HttpPost]
-        public ActionResult EditBackground(Background background)
+        public ActionResult AddBackgroundInfo(Background background)
         {
             if (ModelState.IsValid)
             {
-                repository3.SaveBackgroundInfo(background);
+                backgroundRepo.SaveBackgroundInfo(background);
                 //TempData["message"] = string.Format("{0} has been saved", background.Name);
                 return RedirectToAction("BackgroundManaging");
             }
@@ -328,12 +126,50 @@ namespace Thammapirom.Controllers
                 return View(background);
             }
         }
+        public ViewResult EditBackgroundInfo(int backgroundId)
+        {
+            Background background = backgroundRepo.Backgrounds.FirstOrDefault(p => p.BackgroundID == backgroundId);
+            return View(background);
+        }
+        [HttpPost]
+        public ActionResult EditBackgroundInfo(Background background)
+        {
+            if (ModelState.IsValid)
+            {
+                backgroundRepo.SaveBackgroundInfo(background);
+                //TempData["message"] = string.Format("{0} has been saved", background.Name);
+                return RedirectToAction("BackgroundManaging");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(background);
+            }
+        }
+
+        // Event Page Controller //
+        public ViewResult AnnualEventManaging()
+        {
+            return View(annualEventRepo.AnnualEvents);
+        }
+        public ViewResult CustomEventManaging()
+        {
+            return View(customEventRepo.CustomEvents);
+        }
+        public ViewResult AddAnnualEvent()
+        {
+            return View("AddAnnualEvent", new AnnualEvent());
+        }
+        public ViewResult AddCustomEvent()
+        {
+            return View("AddCustomEvent", new CustomEvent());
+        }
         [HttpPost]
         public ActionResult AddAnnualEvent(AnnualEvent annualEvent)
         {
             if (ModelState.IsValid)
             {
-                repository6.SaveAnnualEvent(annualEvent);
+                annualEventRepo.SaveAnnualEvent(annualEvent);
                 return RedirectToAction("AnnualEventManaging");
             }
             else
@@ -343,25 +179,150 @@ namespace Thammapirom.Controllers
             }
         }
         [HttpPost]
-        public ActionResult AddOtherEvent(OtherEvent otherEvent)
+        public ActionResult AddCustomEvent(CustomEvent customEvent)
         {
             if (ModelState.IsValid)
             {
-                repository7.SaveOtherEvent(otherEvent);             
-                return RedirectToAction("AnnualEventManaging");
+                customEventRepo.SaveCustomEvent(customEvent);
+                return RedirectToAction("CustomEventManaging");
             }
             else
             {
                 // there is something wrong with the data values
-                return View(otherEvent);
+                return View(customEvent);
             }
+        }
+        public ViewResult EditAnnualEvent(int aEventID)
+        {
+            AnnualEvent annualEvent = annualEventRepo.AnnualEvents.FirstOrDefault(p => p.aEventID == aEventID);
+            return View(annualEvent);
+        }
+        public ViewResult EditCustomEvent(int cEventID)
+        {
+            CustomEvent customEvent = customEventRepo.CustomEvents.FirstOrDefault(p => p.cEventID == cEventID);
+            return View(customEvent);
+        }
+        [HttpPost]
+        public ActionResult EditCustomEvent(CustomEvent customEvent)
+        {
+            if (ModelState.IsValid)
+            {
+                customEventRepo.SaveCustomEvent(customEvent);
+                return RedirectToAction("CustomEventManaging");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(customEvent);
+            }
+        }
+        [HttpPost]
+        public ActionResult DeleteAnnualEvent(int aEventID)
+        {
+            AnnualEvent deletedAnnualEvent = annualEventRepo.DeleteAnnualEvent(aEventID);
+            if (deletedAnnualEvent != null)
+            {
+                TempData["message"] = "Delete success";
+            }
+            return RedirectToAction("AnnualEventManaging");
+        }
+        [HttpPost]
+        public ActionResult DeleteCustomEvent(int cEventID)
+        {
+            CustomEvent deletedCustomEvent = customEventRepo.DeleteCustomEvent(cEventID);
+            if (deletedCustomEvent != null)
+            {
+                TempData["message"] = "Delete success";
+            }
+            return RedirectToAction("CustomEventManaging");
+        }
+
+        // Dhamma QA Page Controller //
+        public ViewResult DhammaQAManaging()
+        {
+            return View(dhammaQARepo.DhammaQAs);
+        }
+        public ViewResult ReplyDhammaQA(int qaID)
+        {
+            DhammaQA dhammaQA = dhammaQARepo.DhammaQAs.FirstOrDefault(p => p.QAID == qaID);
+            return View(dhammaQA);
+        }
+        [HttpPost]
+        public ActionResult ReplyDhammaQuestion(DhammaQA dhammaQA)
+        {
+            if (ModelState.IsValid)
+            {
+
+                dhammaQARepo.SaveDhammaQA(dhammaQA);
+                return RedirectToAction("DhammaQAManaging");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(dhammaQA);
+            }
+        }
+        [HttpPost]
+        public ActionResult DeleteDhammaQA(int QAID)
+        {
+            DhammaQA deletedDhammaQA = dhammaQARepo.DeleteDhammaQA(QAID);
+            if (deletedDhammaQA != null)
+            {
+                TempData["message"] = "Delete success";
+            }
+            return RedirectToAction("DhammaQAManaging");
+        }
+
+        // Gallery Page Controller //
+        public ViewResult GalleryManaging()
+        {
+            return View(galleryImageRepo.GalleryImages);
+        }
+        public ViewResult AddGalleryImage()
+        {
+            return View("AddGalleryImage", new GalleryImage());
+        }
+        [HttpPost]
+        public ActionResult AddGalleryImage(GalleryImage galleryImage)
+        {
+            if (ModelState.IsValid)
+            {
+                galleryImageRepo.SaveGalleryImage(galleryImage);
+                //TempData["message"] = string.Format("{0} has been saved", welcomeImage.ImageID);
+                return RedirectToAction("GalleryManaging");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(galleryImage);
+            }
+        }
+        [HttpPost]
+        public ActionResult DeleteGalleryImage(int ImageID)
+        {
+            GalleryImage deletedGalleryImage = galleryImageRepo.DeleteGalleryImage(ImageID);
+            if (deletedGalleryImage != null)
+            {
+                TempData["message"] = "Delete success";
+            }
+            return RedirectToAction("GalleryManaging");
+        }
+
+        // Activity Clip Page Controller //
+        public ViewResult ActivityClipManaging()
+        {
+            return View(activityClipRepo.ActivityClips);
+        }
+        public ViewResult AddActivityClip()
+        {
+            return View("AddActivityClip", new ActivityClip());
         }
         [HttpPost]
         public ActionResult AddActivityClip(ActivityClip activityClip)
         {
             if (ModelState.IsValid)
             {
-                repository4.SaveActivityClip(activityClip);
+                activityClipRepo.SaveActivityClip(activityClip);
                 return RedirectToAction("ActivityClipManaging");
             }
             else
@@ -371,19 +332,14 @@ namespace Thammapirom.Controllers
             }
         }
         [HttpPost]
-        public ActionResult ReplyDhammaQuestion(DhammaQA dhammaQA)
+        public ActionResult DeleteActivityClip(int clipID)
         {
-            if (ModelState.IsValid)
+            ActivityClip deletedActivityClip = activityClipRepo.DeleteActivityClip(clipID);
+            if (deletedActivityClip != null)
             {
-
-                repository5.SaveDhammaQA(dhammaQA);
-                return RedirectToAction("DhammaQAManaging");
+                TempData["message"] = "Delete success";
             }
-            else
-            {
-                // there is something wrong with the data values
-                return View(dhammaQA);
-            }
+            return RedirectToAction("ActivityClipManaging");
         }
     }
 }

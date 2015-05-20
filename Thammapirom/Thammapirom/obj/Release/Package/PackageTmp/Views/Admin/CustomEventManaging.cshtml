@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Thammapirom.Models.CustomEvent>
+@{
+    ViewBag.Title = "หน้าจัดการกิจกรรมทั่วไป";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@if (Session["LoginStatus"] == "True")
+{
+    <h2>หน้าจัดการกิจกรรมทั่วไป</h2>
+    <p>
+        @Html.ActionLink("เพิ่มกิจกรรมทั่วไป", "AddCustomEvent")
+    </p>
+
+    <div class="item">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่อกิจกรรม</th>
+                    <th>รายละเอียดกิจกรรม</th>
+                    <th>วันที่จัดกิจกรรม</th>
+                    <th>เวลาจัดกิจกรรม</th>
+                    <th>สถานที่จัดกิจกรรม</th>
+                    <th>จุดประสงค์การจัด</th>
+                    <th colspan="2">ส่วนจัดการ</th>
+                </tr>
+            </thead>
+
+            @foreach (var cvt in Model.Reverse())
+            {
+                <tbody>
+                    <tr>
+                        @if (cvt.cEventID != null)
+                        {
+                            <td>@cvt.cEventID</td>
+                            <td>@cvt.cEventTitle</td>
+                            <td>@cvt.cEventDetail</td>
+                            <td>@cvt.cEventDate</td>
+                            <td>@cvt.cEventTime</td>
+                            <td>@cvt.cEventLocation</td>
+                            <td>@cvt.cEventPurpose</td>
+ 
+                            <td>@Html.ActionLink("แก้ไข", "EditCustomEvent", new { cEventID = cvt.cEventID })
+                            </td>
+       
+                            <td>@using (Html.BeginForm("DeleteCustomEvent", "Admin"))
+                                { 
+                                @Html.Hidden("EventID", cvt.cEventID)
+                                <input type="submit" value="ลบ" />                
+                                }
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            }
+
+        </table>
+        <p>
+        </p>
+    </div>
+}
+else { }

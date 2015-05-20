@@ -1,0 +1,54 @@
+﻿@model Thammapirom.Models.CustomEvent
+
+
+@{
+    ViewBag.Title = "รายละเอียดกิจกรรมทั่วไป";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<section class="featured">
+    <div class="content-wrapper">
+        <hgroup class="title">
+            <h1>@ViewBag.Title</h1>
+        </hgroup>
+        <table class="table" style="width: 900px; height: 380px; background-color: rgba(255, 255, 255, 0.90); margin-left: auto; margin-right: auto; font-family: Kunlasatri; font-size: 24px;">
+
+            <tr>
+                <td style="width: 200px; font-weight: bolder; padding-left: 20px;">ชื่อกิจกรรม:</td>
+                <td>@Html.ValueFor(Model => Model.cEventTitle)</td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-weight: bolder; padding-left: 20px;">วันที่จัดกิจกรรม:</td>
+                <td>@Html.ValueFor(Model => Model.cEventDate)</td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-weight: bolder; padding-left: 20px;">เวลาจัดกิจกรรม:</td>
+                <td>@Html.ValueFor(Model => Model.cEventTime)</td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-weight: bolder; padding-left: 20px;">สถานที่จัดกิจกรรม:</td>
+                <td>@Html.ValueFor(Model => Model.cEventLocation)</td>
+            </tr>
+            <tr>
+                <td style="width: 200px; font-weight: bolder; padding-left: 20px;">รายละเอียดจัดกิจกรรม:</td>
+                <td>@Html.ValueFor(Model => Model.cEventDetail)</td>
+            </tr>
+             <tr>
+                <td style="width: 200px; font-weight: bolder; padding-left: 20px;">จุดประสงค์การจัดกิจกรรม:</td>
+                <td>@Html.ValueFor(Model => Model.cEventPurpose)</td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+
+                    <p style="text-align: right; text-decoration: underline;">@Html.ActionLink("ยกเลิกและกลับสู่หน้ากิจกรรมทั่วไป", "CustomEvent") </p>
+                </td>
+            </tr>
+
+
+        </table>
+
+    </div>
+</section>

@@ -11,9 +11,9 @@ namespace Thammapirom.Models
         [Key]
         [HiddenInput(DisplayValue = false)]
         public int ImageID { get; set; }
-        public byte[] ImageData { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public string ImageMimeType { get; set; }
+         [Required(ErrorMessage = "กรุณาระบุเลิ้งรูปภาพ เช่น http://i.imgur.com/HetuxRO.png")]
+         [Display(Name = "ลิ้งรูปภาพ")]
+        public string ImageData { get; set; }
        
     }
 }
